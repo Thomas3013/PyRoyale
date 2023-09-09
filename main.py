@@ -49,7 +49,7 @@ elixir_thread.start()
 gametimer_thread = threading.Thread(target=game_timer)
 gametimer_thread.daemon = True
 gametimer_thread.start()
-#HATE
+
 while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
