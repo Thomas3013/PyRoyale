@@ -43,9 +43,11 @@ def elixir_counter():
         print("elixir gained", elixir)
 
 elixir_thread = threading.Thread(target=elixir_counter)
+elixir_thread.daemon = True
 elixir_thread.start()
 
 gametimer_thread = threading.Thread(target=game_timer)
+gametimer_thread.daemon = True
 gametimer_thread.start()
 
 while run:
