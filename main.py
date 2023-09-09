@@ -1,4 +1,6 @@
 import pygame
+import time
+import threading
 from pygame.locals import *
 
 pygame.init()
@@ -18,7 +20,34 @@ pygame.mixer.music.play(-1)
 
 
 # GAME LOGIC
+elixir = 0
+elixir_speed = 1
 run = True
+game_time = 300
+
+
+def game_timer():
+    global game_time
+    while True:
+        game_time -= 1
+        time.sleep(1)
+        convert = time.strftime("%M:%S", time.gmtime(game_time))
+        print(convert)
+
+def elixir_counter():
+    global elixir
+    while True:
+        if elixir < 10:
+            elixir += 1
+        time.sleep(elixir_speed)
+        print("elixir gained", elixir)
+
+elixir_thread = threading.Thread(target=elixir_counter)
+elixir_thread.start()
+
+gametimer_thread = threading.Thread(target=game_timer)
+gametimer_thread.start()
+
 while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
