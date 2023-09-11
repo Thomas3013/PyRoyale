@@ -21,7 +21,7 @@ pygame.mixer.music.play(-1)
 
 # GAME LOGIC
 elixir = 0
-elixir_speed = 1
+elixir_speed = 2.8
 run = True
 game_time = 300
 
@@ -35,8 +35,20 @@ def game_timer():
         print(convert)
 
 def elixir_counter():
-    global elixir
+    global elixir, elixir_speed
     while True:
+        #double elixir grants +1 elixir to player
+        if game_time == 180:
+            if(elixir<10):
+                elixir += 1
+                print("elixir gained", elixir)  
+        # double elixir
+        if game_time <= 180:
+            elixir_speed = 1.4
+        # triple elixir
+        if game_time == 60:
+            elixir_speed = 0.9
+        # elixir cap
         if elixir < 10:
             elixir += 1
         time.sleep(elixir_speed)
