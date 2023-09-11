@@ -40,7 +40,8 @@ def game_timer():
     global game_time
     while True:
         # update time and generate new image for current time
-        game_time -= 1
+        if game_time > 0:
+            game_time -= 1
         convert = time.strftime("%M:%S", time.gmtime(game_time))
         time_img = font.render(convert, True, (255,255,255))
         # create surface to draw time onto
