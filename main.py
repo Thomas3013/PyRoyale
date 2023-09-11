@@ -14,16 +14,23 @@ pygame.display.set_caption('Clash Royale')
 icon = pygame.image.load('assets/icon.png')
 pygame.display.set_icon(icon)
 
-#game sounds
-pygame.mixer.music.load('assets/menu_theme.mp3')
-pygame.mixer.music.play(-1)
-
 
 # GAME LOGIC
 elixir = 0
 elixir_speed = 2.8
 run = True
 game_time = 300
+
+
+#image loader
+elixir_state = []
+for elixir_level in range(0,11):
+    eimg = pygame.image.load(f'assets/elixir{elixir_level}.png')
+    elixir_state.append(eimg)
+
+#game sounds
+pygame.mixer.music.load('assets/menu_theme.mp3')
+pygame.mixer.music.play(-1)
 
 
 def game_timer():
@@ -35,8 +42,11 @@ def game_timer():
         print(convert)
 
 def elixir_counter():
-    global elixir, elixir_speed
+    global elixir, elixir_speed, screen
     while True:
+        # updating on-screen elixir to match elixir value    
+        screen.blit(elixir_state[elixir], (72, 627))
+        pygame.display.update()
         #double elixir grants +1 elixir to player
         if game_time == 180:
             if(elixir<10):
@@ -51,6 +61,7 @@ def elixir_counter():
         # elixir cap
         if elixir < 10:
             elixir += 1
+
         time.sleep(elixir_speed)
         print("elixir gained", elixir)
 
