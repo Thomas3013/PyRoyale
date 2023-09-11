@@ -27,24 +27,37 @@ elixir_state = []
 for elixir_level in range(0,11):
     eimg = pygame.image.load(f'assets/elixir{elixir_level}.png')
     elixir_state.append(eimg)
+bg = pygame.image.load('assets/bg.png')    
 
 #game sounds
 pygame.mixer.music.load('assets/menu_theme.mp3')
 pygame.mixer.music.play(-1)
 
+#game font
+font = pygame.font.Font('assets/Helvetica_Rounded_Bold.otf', 36)
 
 def game_timer():
     global game_time
     while True:
+        # update time and generate new image for current time
         game_time -= 1
-        time.sleep(1)
         convert = time.strftime("%M:%S", time.gmtime(game_time))
+        time_img = font.render(convert, True, (255,255,255))
+        # create surface to draw time onto
+        screen_surface = pygame.Surface((200, 100))
+        screen_surface.fill((0,0,0))
+        # draw updated time onto screen
+        screen_surface.blit(time_img,(0,0))
+        screen.blit(screen_surface, (600, 50))
+        pygame.display.update()
+
+        time.sleep(1)
         print(convert)
 
 def elixir_counter():
     global elixir, elixir_speed, screen
     while True:
-        # updating on-screen elixir to match elixir value    
+        # updating on-screen elixir to match elixir value  
         screen.blit(elixir_state[elixir], (72, 627))
         pygame.display.update()
         #double elixir grants +1 elixir to player
