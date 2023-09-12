@@ -23,11 +23,12 @@ max_elixir = 10
 elixir_generation_rate = 1 / 2.8  # Elixir every 2.8 seconds
 run = True
 background = pygame.image.load('assets/bg.png')
+deck_background = pygame.image.load('assets/deck_bg.png')
 
 elixir_bar_images = []
 for i in range(11):
     image = pygame.image.load(f'assets/elixir{i}.png')
-    image = pygame.transform.scale(image, (540, 30))
+    image = pygame.transform.scale(image, (532, 30))
     elixir_bar_images.append(image)
 
 def display_elixir_bar(screen, current_elixir):
@@ -40,8 +41,9 @@ def display_elixir_bar(screen, current_elixir):
     # Get the corresponding elixir bar image
     elixir_bar_image = elixir_bar_images[elixir_bar_index]
 
-    # Display the elixir bar image at the bottom of the screen
-    screen.blit(elixir_bar_image, (0, screen_height - 30))
+    # Display elixir bar and deck bg images at correct pos
+    screen.blit(deck_background,(0,screen_height - 192))
+    screen.blit(elixir_bar_image, (4, screen_height - 45))
 
 # Get the current time in milliseconds
 current_time = pygame.time.get_ticks()
