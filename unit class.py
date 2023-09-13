@@ -16,11 +16,11 @@ class Unit:
         self.m_units = []
         self.m_colors = colors
     def Movement(self):
-        ##pygame shit i dont get it
+        ##pygame  i dont get it
         ## every tick move pixels based off moveemnt speed + validate ground for gorunded unites
         return 0
     def attack(self):
-        ##pygame shit
+        ##pygame 
         ##detect closest enemy based off range
         ## do self.damage * self.speed to it
         return 0
@@ -29,6 +29,6 @@ class Unit:
             self.m_units.append(pygame.rect(pygame.mouse.get_pos()[0],pygame.mouse.get_pos()[1],self.m_width,self.m_height))
     def spawnUnits(self,screen):
         for i in range(self.m_count):
-            pygame.draw.rect(screen,m_colors[i],m_units[i])
+            pygame.draw.rect(screen,self.m_colors[i],self.m_units[i])
 
             
