@@ -1,5 +1,6 @@
 import pygame
 from pygame.locals import *
+from unitclass import Unit
 
 pygame.init()
 
@@ -63,6 +64,21 @@ last_time = current_time
 # Define the size of the timer background
 timer_bg_width = 100  # Adjust this as needed
 timer_bg_height = 50  # Adjust this as needed
+# Define some sample values for the unit parameters
+cost = 100
+hit_speed = 1.5
+deploy_time = 5
+_range = 6
+target = "Ground"
+count = 3
+transport = True
+height = 200.0
+width = 100.0
+colors = [255, 0, 0]
+
+# Create a Unit object
+unit = Unit(cost, hit_speed, deploy_time, _range, target, count, transport, height, width, colors)
+unit.spawnList()
 
 while run:
     for event in pygame.event.get():
@@ -71,8 +87,6 @@ while run:
 
     # Get the current time in milliseconds
     current_time = pygame.time.get_ticks()
-
-    # Calculate the elapsed time in milliseconds since the last frame
     elapsed_time = current_time - last_time
 
     # Calculate the time required for 1 elixir to generate (2.8 seconds in milliseconds)
@@ -124,6 +138,9 @@ while run:
     timer_surface = font.render(timer_text, True, (255, 255, 255))
     timer_rect = timer_surface.get_rect(topright=(screen_width - 10, 10))
     screen.blit(timer_surface, timer_rect)
+    unit.spawnUnits(screen)
+    pygame.draw.rect(screen, (255, 0, 0), (100, 100, 100, 100))    # Calculate the elapsed time in milliseconds since the last frame
+
 
     pygame.display.update()
 
