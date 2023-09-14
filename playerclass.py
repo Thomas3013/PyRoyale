@@ -1,20 +1,20 @@
 class Player:
     def __init__(self):
-        self.__elixer = 0
+        self.__elixir = 0
         self.__leftTower = 3200
         self.__rightTower = 3200
         self.__mainTower = 6000
         self.__playerDeck = []
 
-    # Getter for elixer
+    # Getter for elixir
     @property
-    def elixer(self):
-        return self.__elixer
+    def elixir(self):
+        return self.__elixir
 
-    # Setter for elixer
-    @elixer.setter
-    def elixer(self, value):
-        self.__elixer = value
+    # Setter for elixir
+    @elixir.setter
+    def elixir(self, value):
+        self.__elixir = value
 
     # Getter for leftTower
     @property
