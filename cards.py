@@ -15,9 +15,9 @@ hog_rider = {
     "target" : 2,
     "count" : 1,
     "transport" : 0,
-    "height" : 72,
-    "width" : 48,
-    "colors" : (255,255,255)
+    "height" : 60,
+    "width" : 36,
+    "colors" : (106,36,6)
 }
 ice_spirit = {
     "cost" : 1,

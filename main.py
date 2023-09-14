@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 from unitclass import Unit
+from cards import *
 pygame.init()
 
 # WINDOW DISPLAY
@@ -22,6 +23,7 @@ current_elixir = 0  # Initialize current_elixir to 0
 max_elixir = 10
 elixir_generation_rate = 1 / 2.8  # Elixir every 2.8 seconds
 run = True
+place = False
 background = pygame.image.load('assets/bg.png')
 deck_background = pygame.image.load('assets/deck_bg.png')
 
@@ -63,28 +65,10 @@ last_time = current_time
 # Define the size of the timer background
 timer_bg_width = 100  # Adjust this as needed
 timer_bg_height = 50  # Adjust this as needed
-# Define some sample values for the unit parameters
-# Define values for the parameters
-cost = 100
-hp = 250  # You didn't provide a value, so I'll assume 250
-dmg = 50  # You didn't provide a value, so I'll assume 50
-splash = True
-hit_speed = 1.5
-speed = 20  # You didn't provide a value, so I'll assume 20
-deploy_time = 5
-range = 6  # I assume you meant to use `_range` instead of `range`
-target = "Ground"
-count = 3
-transport = True
-height = 20.0
-width = 10.0
-colors = [255, 0, 0]
-unit_object = Unit(
-    cost, hp, dmg, splash, hit_speed, speed, deploy_time, range,
-    target, count, transport, height, width, colors,0
-)
+
+#Sample unit using hog rider hashmap
+hog_rider_unit = Unit(hog_rider, 0)
 toSpawn = []
-# Create a Unit object
 
 while run:
     for event in pygame.event.get():
@@ -144,10 +128,15 @@ while run:
     timer_surface = font.render(timer_text, True, (255, 255, 255))
     timer_rect = timer_surface.get_rect(topright=(screen_width - 10, 10))
     screen.blit(timer_surface, timer_rect)
-    if pygame.mouse.get_pressed()[0]:
-        toSpawn = unit_object.spawnUnits(screen, pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
+    if pygame.mouse.get_pressed()[0] == 1 and place == False:
+        if(current_elixir >= hog_rider_unit.get_elixir()):
+            place = True
+            toSpawn = hog_rider_unit.spawn_units(screen, pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
+            current_elixir -= hog_rider_unit.get_elixir()
+    if pygame.mouse.get_pressed()[0] == 0:
+        place = False
     for toDraw in toSpawn:
-        pygame.draw.rect(screen,unit_object.getColor(), toDraw)
+        pygame.draw.rect(screen,hog_rider_unit.get_color(), toDraw)
 
     pygame.display.update()
 
