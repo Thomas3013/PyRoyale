@@ -1,7 +1,6 @@
 import pygame
 from pygame.locals import *
 from unitclass import Unit
-
 pygame.init()
 
 # WINDOW DISPLAY
@@ -65,20 +64,27 @@ last_time = current_time
 timer_bg_width = 100  # Adjust this as needed
 timer_bg_height = 50  # Adjust this as needed
 # Define some sample values for the unit parameters
+# Define values for the parameters
 cost = 100
+hp = 250  # You didn't provide a value, so I'll assume 250
+dmg = 50  # You didn't provide a value, so I'll assume 50
+splash = True
 hit_speed = 1.5
+speed = 20  # You didn't provide a value, so I'll assume 20
 deploy_time = 5
-_range = 6
+range = 6  # I assume you meant to use `_range` instead of `range`
 target = "Ground"
 count = 3
 transport = True
-height = 200.0
-width = 100.0
+height = 20.0
+width = 10.0
 colors = [255, 0, 0]
-
+unit_object = Unit(
+    cost, hp, dmg, splash, hit_speed, speed, deploy_time, range,
+    target, count, transport, height, width, colors,0
+)
+toSpawn = []
 # Create a Unit object
-unit = Unit(cost, hit_speed, deploy_time, _range, target, count, transport, height, width, colors)
-unit.spawnList()
 
 while run:
     for event in pygame.event.get():
@@ -138,9 +144,10 @@ while run:
     timer_surface = font.render(timer_text, True, (255, 255, 255))
     timer_rect = timer_surface.get_rect(topright=(screen_width - 10, 10))
     screen.blit(timer_surface, timer_rect)
-    unit.spawnUnits(screen)
-    pygame.draw.rect(screen, (255, 0, 0), (100, 100, 100, 100))    # Calculate the elapsed time in milliseconds since the last frame
-
+    if pygame.mouse.get_pressed()[0]:
+        toSpawn = unit_object.spawnUnits(screen, pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
+    for toDraw in toSpawn:
+        pygame.draw.rect(screen,unit_object.getColor(), toDraw)
 
     pygame.display.update()
 

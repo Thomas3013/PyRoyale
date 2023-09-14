@@ -3,7 +3,8 @@ from pygame.locals import *
 
 
 class Unit:
-    def __init__(self, cost, hp, dmg, splash, hit_speed, speed, deploy_time, range, target, count, transport, height, width,colors):
+    def __init__(self, cost, hp, dmg, splash, hit_speed, speed, deploy_time, range, target, count, transport, height,
+                 width, colors, player):
         self.m_cost = cost
         self.m_hp = hp
         self.m_dmg = dmg
@@ -19,12 +20,12 @@ class Unit:
         self.m_height = height
         self.m_units = []
         self.m_colors = colors
+        self.player = player
 
-    def spawnList(self):
+    def getColor(self):
+        return self.m_colors
+
+    def spawnUnits(self, screen, mouseX, mouseY):
         for x in range(self.m_count):
-            self.m_units.append(pygame.Rect(0,1, self.m_width, self.m_height))
-    
-    def spawnUnits(self, screen):
-        for unit in self.m_units:
-            print("helo")
-            pygame.draw.rect(screen, self.m_colors, unit)
+            self.m_units.append(pygame.Rect(mouseX + (1.05 * x), mouseY + (1.05 * x), self.m_width, self.m_height))
+        return self.m_units
