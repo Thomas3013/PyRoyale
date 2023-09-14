@@ -3,9 +3,13 @@ from pygame.locals import *
 
 
 class Unit:
-    def __init__(self, cost, hit_speed, deploy_time, range, target, count, transport, height, width,colors):
+    def __init__(self, cost, hp, dmg, splash, hit_speed, speed, deploy_time, range, target, count, transport, height, width,colors):
         self.m_cost = cost
+        self.m_hp = hp
+        self.m_dmg = dmg
+        self.m_splash = splash
         self.m_hit_speed = hit_speed
+        self.m_speed = speed
         self.m_deploy_time = deploy_time
         self.m_range = range
         self.m_target = target
