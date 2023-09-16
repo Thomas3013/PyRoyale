@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 from unitclass import Unit
 from cards import *
+from tile import *
 pygame.init()
 
 # WINDOW DISPLAY
