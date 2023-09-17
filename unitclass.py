@@ -36,7 +36,8 @@ class Unit:
         print(mouseY)
         tile = tiles[mouseY][mouseX] #flipped?
         if tile == 1:
-            return[(mouseX * 24) - 12, (mouseY * 24) - 12]
+            
+            return[(mouseX * 24), (mouseY * 24)-(self.m_height/2)]
         else:
             print("invalid placement")
             return -1
