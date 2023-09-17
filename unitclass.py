@@ -18,6 +18,8 @@ class Unit:
         self.m_transport = troop["transport"]
         self.m_width = troop["width"]
         self.m_height = troop["height"]
+        self.m_ability = troop["ability"]
+        self.m_cc = troop["cc"]
         self.m_units = []
         self.m_colors = (troop["colors"])
         self.player = player
