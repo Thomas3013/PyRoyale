@@ -132,7 +132,7 @@ while run:
     if pygame.mouse.get_pressed()[0] == 1 and place == False:
         if(current_elixir >= hog_rider_unit.get_elixir()):
             place = True
-            toSpawn = hog_rider_unit.spawn_units(screen, pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
+            toSpawn = hog_rider_unit.spawn_units(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
             current_elixir -= hog_rider_unit.get_elixir()
     if pygame.mouse.get_pressed()[0] == 0:
         place = False
