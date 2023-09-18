@@ -77,14 +77,24 @@ class Unit:
         return self.m_units
 
     def aStarLeft(self,MouseX,MouseY):
-        startNode = (0,MouseX,MouseY)
+        startNode = AstarNode(0,MouseX,MouseY)
         openlist = []
         closedlist = []
         openlist.append(startNode)
         currentNode = startNode
         pathed = False
         while(pathed is False):
-            
+            topleft = AstarNode(0,MouseX,MouseY)
+            bottomleft
+            topright
+            bottomright
+            top
+            bottom
+
+
+
+        #   obj = MyObject(i)
+    #my_list.append(obj)
 
 
 
