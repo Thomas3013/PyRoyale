@@ -3,6 +3,7 @@ from pygame.locals import *
 from unitclass import Unit
 from cards import *
 from tile import *
+from deck import *
 pygame.init()
 
 # WINDOW DISPLAY
@@ -75,6 +76,15 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_1:
+                play_card(0)
+            elif event.key == pygame.K_2:
+                play_card(1)
+            elif event.key == pygame.K_3:
+                play_card(2)
+            elif event.key == pygame.K_4:
+                play_card(3)    
 
     # Get the current time in milliseconds
     current_time = pygame.time.get_ticks()

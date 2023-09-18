@@ -326,7 +326,7 @@ goblin_gang = {
     "transport" : 0,
     "height" : 24,
     "width" : 24,
-    "ability" : "spawn 3x gang behind on spawn",
+    "ability" : "spawn 3x spear behind on spawn",
     "cc" : "none",
     "colors" : (255,255,255)
 }
