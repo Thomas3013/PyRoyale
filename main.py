@@ -138,6 +138,8 @@ while run:
         place = False
     for toDraw in toSpawn:
         pygame.draw.rect(screen,hog_rider_unit.get_color(), toDraw)
+    print(pygame.mouse.get_pos()[0])
+    print(pygame.mouse.get_pos()[1])
 
     pygame.display.update()
 
