@@ -10,7 +10,7 @@ class AstarNode:
         self.F = self.G + self.H
         self.x = x
         self.y = y
-        self.walkable =
+        self.walkable = 0 #call wings function here
 
     def Hgetter(self):
         return self.H
@@ -83,13 +83,22 @@ class Unit:
         openlist.append(startNode)
         currentNode = startNode
         pathed = False
+        i = 0
+        x = MouseX
+        y = MouseY
+        startX = startNode.Xgetter()
+        startY = startNode.Ygetter()
         while(pathed is False):
-            topleft = AstarNode(0,MouseX,MouseY)
-            bottomleft
-            topright
-            bottomright
-            top
-            bottom
+            topleft = AstarNode((startX - x - 1) + (startY - y - 1), x - 1, y - 1)
+            bottomleft = AstarNode((startX - x - 1) + (startY - y + 1), x - 1, y + 1)
+            topright = AstarNode((startX - x + 1) + (startY - y - 1), x + 1, y - 1)
+            bottomright = AstarNode((startX - x + 1) + (startY - y), x + 1, y)
+            top = AstarNode((startX - x) + (startY - y - 1), x, y - 1)
+            bottom = AstarNode((startX - x) + (startY - y + 1), x, y + 1)
+            left = AstarNode((startX - x - 1) + (startY - y), x - 1, y)
+            right = AstarNode((startX - x + 1) + (startY - y), x + 1, y)
+1
+
 
 
 
