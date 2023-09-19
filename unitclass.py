@@ -80,12 +80,18 @@ class Unit:
         else:
             return False
 
-    def spawn_units(self, mouseX, mouseY):
+    def spawn_units(self,screen,mouseX, mouseY):
         pos = self.get_tile_index(mouseX, mouseY)
-        if (pos != -1):
+        if pos != -1:
+            unit_positions = []
             for x in range(self.m_count):
-                self.m_units.append(pygame.Rect(pos[0] + (1.05 * x), pos[1] + (1.05 * x), self.m_width, self.m_height))
-        return self.m_units
+                unit_positions.append((pos[0] + (1.05 * x), pos[1] + (1.05 * x)))
+            self.m_units.extend(unit_positions)  # Store the positions in self.m_units
+            return unit_positions
+
+    def draw_units(self, screen):
+        for unit_position in self.m_units:
+            pygame.draw.rect(screen, self.get_color(), pygame.Rect(unit_position[0], unit_position[1], self.m_width, self.m_height))
 
     def aStarLeft(self, MouseX, MouseY):
         startNode = AstarNode(0, MouseX, MouseY)

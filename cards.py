@@ -205,7 +205,7 @@ minions = {
 }
 
 pekka = {
-    "cost": 7,
+    "cost": 0,
     "hp": 3760,
     "dmg": 816,
     "splash": 0,
@@ -402,19 +402,19 @@ rocket = {
     "colors": (255, 255, 255)
 }
 
-units = {
-    "units::hog_rider": hog_rider,
-    "units::ice_spirit": ice_spirit,
-    "units::musketeer": musketeer,
-    "units::ice_golem": ice_golem,
-    "units::skeletons": skeletons,
-    "units::bandit": bandit,
-    "units::royal_ghost": royal_ghost,
-    "units::minions": minions,
-    "units::pekka": pekka,
-    "units::ewiz": ewiz,
-    "units::battle_ram": battle_ram,
-    "units::goblin_gang": goblin_gang,
-    "units::knight": knight,
-    "units::princess": princess,
-}
+unit = {
+        "unit::hog_rider": hog_rider,
+        "unit::ice_spirit": ice_spirit,
+        "unit::musketeer": musketeer,
+        "unit::ice_golem": ice_golem,
+        "unit::skeletons": skeletons,
+        "unit::bandit": bandit,
+        "unit::royal_ghost": royal_ghost,
+        "unit::minions": minions,
+        "unit::pekka": pekka,
+        "unit::ewiz": ewiz,
+        "unit::battle_ram": battle_ram,
+        "unit::goblin_gang": goblin_gang,
+        "unit::knight": knight,
+        "unit::princess": princess,
+    }
