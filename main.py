@@ -6,6 +6,14 @@ from unitclass import Unit
 from cards import *
 from tile import *
 
+##setting up player
+player = playerclass.Player()
+playerHandKeys = player.getHand()
+for i in range(len(playerHandKeys)):
+    player.playerHandUnits.append(Unit(unit[playerHandKeys[i]], 0))
+for key in playerHandKeys:
+    print(key)
+toSpawn = []
 pygame.init()
 
 # WINDOW DISPLAY
@@ -36,7 +44,6 @@ for i in range(11):
     image = pygame.image.load(f'assets/elixir{i}.png')
     image = pygame.transform.scale(image, (532, 30))
     elixir_bar_images.append(image)
-player = playerclass.Player()
 
 
 def display_elixir_bar(screen, current_elixir):
@@ -136,17 +143,14 @@ while run:
     timer_rect = timer_surface.get_rect(topright=(screen_width - 10, 10))
     screen.blit(timer_surface, timer_rect)
 
-    # Assuming player.getHand() returns a list of keys
-    playerHandKeys = player.getHand()
-    playerHandUnits = []  # Create an empty list to store the Unit objects
-    for i in range(len(playerHandKeys)):
-        playerHandUnits.append(Unit(unit[playerHandKeys[i]], 0))
+    if pygame.key.get_pressed()[pygame.K_1] and current_elixir >= player.playerHandUnits[0].get_elixir():
+        for key in playerHandKeys:
+            print(key)
+        print("-----------")
+        current_elixir -= player.playerHandUnits[0].get_elixir()
+        toSpawn.append([player.playerHandUnits[0],pygame.mouse.get_pos()[0],pygame.mouse.get_pos()[1]])
+        player.cardUsed(playerHandKeys[0],0)
 
-    if pygame.key.get_pressed()[pygame.K_1] and current_elixir >= playerHandUnits[0].get_elixir():
-        print(playerHandUnits[0].m_hp)
-        current_elixir -= playerHandUnits[0].get_elixir()
-        toSpawn = playerHandUnits[0].spawn_units(screen,pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
-        player.cardUsed(playerHandKeys[0])
 
         # if (current_elixir >= hog_ride1r_unit.get_elixir()):
         # place = True
@@ -156,9 +160,12 @@ while run:
             #for toDraw in toSpawn:
                 #1pygame.draw.rect(screen, unit.get_color(), toDraw)
 
-    for toDraw in toSpawn:
-        pygame.draw.rect(screen, playerHandUnits[0].get_color(), toDraw)
+    for i in range(len(toSpawn)):
+        color = toSpawn[i][0].get_color()  # Get the color
+        rectangles = toSpawn[i][0].spawn_units(toSpawn[i][1], toSpawn[i][2])  # Get a list of rectangles
 
+        for rect in rectangles:
+            pygame.draw.rect(screen, color, rect)  # Draw each rectangle with the given color
     pygame.display.update()
 
 pygame.quit()

@@ -22,7 +22,7 @@ class SingleLinkedList:
     def initializeHand(self) -> dict:
         hand = {}
         current = self
-        for i in range(3):
+        for i in range(4):
             hand[current.val] = 1
             current = current.next
         return hand

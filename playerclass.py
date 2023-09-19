@@ -1,5 +1,6 @@
 from single_linked_list import SingleLinkedList
 from cards import *
+from unitclass import *
 
 
 class Player:
@@ -14,6 +15,7 @@ class Player:
         self.playerDeck.initializeDeck(self.__playerDeckArray)
         self.playerHand = self.playerDeck.initializeHand()
         self.pointer = self.playerDeck.next.next.next.next
+        self.playerHandUnits = []
 
     # Getter for elixir
     @property
@@ -35,14 +37,20 @@ class Player:
         self.__playerDeckArray.append("unit::goblin_gang")
         self.__playerDeckArray.append("unit::knight")
 
-        #for i in range(8):
-            #self.__playerDeckArray.append(input("Enter a card name (e.g., unit::hog_rider):"))
+        # for i in range(8):
+        # self.__playerDeckArray.append(input("Enter a card name (e.g., unit::hog_rider):"))
 
-    def cardUsed(self, card):
-        print("self.pointer.val:", self.pointer.val)
-        if self.pointer not in self.playerHand:
+    def cardUsed(self, card, position):
+
+        while self.pointer.val in self.playerHand:
+            print(self.pointer.val)
             self.pointer = self.pointer.next
-        self.playerHand[card] = 0
+            if self.pointer.val in self.playerHand:
+                break
+        self.playerHand[self.pointer.val] = 1
+        if card in self.playerHand:
+            self.playerHand.pop(card,None)
+        self.playerHandUnits[position] = (Unit(unit[self.pointer.val], 0))
 
     def getHand(self):
         keys = []

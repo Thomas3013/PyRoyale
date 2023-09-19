@@ -3,7 +3,7 @@
 # target: 0 air ground & building !!  1 ground & building !! 2 building
 # transport: 0 ground !! 1 air
 hog_rider = {
-    "cost": 4,
+    "cost": 0,
     "hp": 1696,
     "dmg": 318,
     "splash": 0,
@@ -22,7 +22,7 @@ hog_rider = {
 }
 
 ice_spirit = {
-    "cost": 1,
+    "cost": 0,
     "hp": 230,
     "dmg": 318,
     "splash": 1.5,
@@ -41,7 +41,7 @@ ice_spirit = {
 }
 
 musketeer = {
-    "cost": 4,
+    "cost": 0,
     "hp": 720,
     "dmg": 218,
     "splash": 0,
@@ -60,7 +60,7 @@ musketeer = {
 }
 
 ice_golem = {
-    "cost": 2,
+    "cost": 0,
     "hp": 1197,
     "dmg": 84,
     "splash": 0,
@@ -79,7 +79,7 @@ ice_golem = {
 }
 
 skeletons = {
-    "cost": 1,
+    "cost": 0,
     "hp": 81,
     "dmg": 81,
     "splash": 0,
@@ -148,7 +148,7 @@ fireball = {
 }
 
 bandit = {
-    "cost": 3,
+    "cost": 0,
     "hp": 907,
     "dmg": 193,
     "splash": 0,
@@ -167,7 +167,7 @@ bandit = {
 }
 
 royal_ghost = {
-    "cost": 3,
+    "cost": 0,
     "hp": 1210,
     "dmg": 261,
     "splash": 1,
@@ -186,7 +186,7 @@ royal_ghost = {
 }
 
 minions = {
-    "cost": 3,
+    "cost": 0,
     "hp": 230,
     "dmg": 117,
     "splash": 0,
@@ -241,7 +241,7 @@ poison = {
 }
 
 zap = {
-    "cost": 2,
+    "cost": 0,
     "dmg": 192,
     "tower_dmg": 57,
     "speed": 0,
@@ -258,7 +258,7 @@ zap = {
 }
 
 ewiz = {
-    "cost": 4,
+    "cost": 0,
     "hp": 713,
     "dmg": 110,  # hits 2x
     "splash": 0,
@@ -277,7 +277,7 @@ ewiz = {
 }
 
 battle_ram = {
-    "cost": 4,
+    "cost": 0,
     "hp": 966,
     "dmg": 286,
     "splash": 0,
@@ -296,7 +296,7 @@ battle_ram = {
 }
 
 goblin_barrel = {
-    "cost": 3,
+    "cost": 0,
     "dmg": 0,
     "tower_dmg": 0,
     "speed": 0,
@@ -313,7 +313,7 @@ goblin_barrel = {
 }
 
 goblin_gang = {
-    "cost": 3,
+    "cost": 0,
     "hp": 202,
     "dmg": 120,
     "splash": 0,
@@ -332,7 +332,7 @@ goblin_gang = {
 }
 
 inferno_tower = {
-    "cost": 5,
+    "cost": 0,
     "hp": 1749,
     "dmg": 42,
     "splash": 0,
@@ -348,7 +348,7 @@ inferno_tower = {
 }
 
 knight = {
-    "cost": 3,
+    "cost": 0,
     "hp": 1607,
     "dmg": 202,
     "splash": 0,
@@ -367,7 +367,7 @@ knight = {
 }
 
 princess = {
-    "cost": 3,
+    "cost": 0,
     "hp": 261,
     "dmg": 169,
     "splash": 1,
