@@ -4,6 +4,7 @@ from tile import *
 from pygame.locals import *
 import math
 import Lib.heapq
+from cards import *
 
 
 class AstarNode:
@@ -107,9 +108,3 @@ class Unit:
             bottom = AstarNode((startX - x) + (startY - y + 1), x, y + 1)
             left = AstarNode((startX - x - 1) + (startY - y), x - 1, y)
             right = AstarNode((startX - x + 1) + (startY - y), x + 1, y)
-
-
-1
-
-#   obj = MyObject(i)
-# my_list.append(obj)

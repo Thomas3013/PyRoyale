@@ -9,11 +9,11 @@ class Player:
         self.__rightTower = 3200
         self.__mainTower = 6000
         self.__playerDeckArray = []
-        self.playerHand = {}
         self.setPlayerDeck()
-        self.playerDeck = SingleLinkedList(None, self.__playerDeckArray)
-
-
+        self.playerDeck = SingleLinkedList()
+        self.playerDeck.initializeDeck(self.__playerDeckArray)
+        self.playerHand = self.playerDeck.initializeHand()
+        self.pointer = self.playerDeck.next.next.next.next
 
     # Getter for elixir
     @property
@@ -26,9 +26,13 @@ class Player:
         self.__elixir = value
 
     def setPlayerDeck(self):
-        for i in range(6):
+        for i in range(8):
             self.__playerDeckArray.append(input("Enter a card name (e.g., unit::hog_rider):"))
 
+    def cardUsed(self, card):
+        while self.pointer is not None and self.playerHand[self.pointer] > 0:
+            self.pointer = self.pointer.next
+        self.playerHand[card] = 0
 
-
-
+    def getHand(self):
+        return self.playerHand

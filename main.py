@@ -1,8 +1,11 @@
 import pygame
 from pygame.locals import *
+
+import playerclass
 from unitclass import Unit
 from cards import *
 from tile import *
+
 pygame.init()
 
 # WINDOW DISPLAY
@@ -33,6 +36,8 @@ for i in range(11):
     image = pygame.image.load(f'assets/elixir{i}.png')
     image = pygame.transform.scale(image, (532, 30))
     elixir_bar_images.append(image)
+player = playerclass.Player()
+
 
 def display_elixir_bar(screen, current_elixir):
     # Ensure the elixir is within the valid range (0-10)
@@ -45,8 +50,9 @@ def display_elixir_bar(screen, current_elixir):
     elixir_bar_image = elixir_bar_images[elixir_bar_index]
 
     # Display elixir bar and deck bg images at correct pos
-    screen.blit(deck_background,(0,screen_height - 192))
+    screen.blit(deck_background, (0, screen_height - 192))
     screen.blit(elixir_bar_image, (4, screen_height - 45))
+
 
 # Get the current time in milliseconds
 current_time = pygame.time.get_ticks()
@@ -67,7 +73,7 @@ last_time = current_time
 timer_bg_width = 100  # Adjust this as needed
 timer_bg_height = 50  # Adjust this as needed
 
-#Sample unit using hog rider hashmap
+# Sample unit using hog rider hashmap
 hog_rider_unit = Unit(hog_rider, 0)
 toSpawn = []
 
@@ -129,15 +135,41 @@ while run:
     timer_surface = font.render(timer_text, True, (255, 255, 255))
     timer_rect = timer_surface.get_rect(topright=(screen_width - 10, 10))
     screen.blit(timer_surface, timer_rect)
-    if pygame.mouse.get_pressed()[0] == 1 and place == False:
-        if(current_elixir >= hog_rider_unit.get_elixir()):
-            place = True
-            toSpawn = hog_rider_unit.spawn_units(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
-            current_elixir -= hog_rider_unit.get_elixir()
+    playerHandKeys = []  # Create an empty list to store the keys
+
+    # Assuming player.getHand() returns a list of keys
+    for key in player.getHand():
+        playerHandKeys.append(key)
+
+    playerHandUnits = []  # Create an empty list to store the Unit objects
+    for key in player.getHand():
+        playerHandKeys.append(key)
+        print(playerHandKeys)
+
+    for i in range(len(playerHandKeys)):
+        print(playerHandKeys[i])
+        unit_key = playerHandKeys[0]  # Extract the unit key
+        print(f"unit_key: {unit_key}")  # Print the unit key to debug
+        playerHandUnits.append(Unit(playerHandKeys[i], 0))
+    if pygame.key.get_pressed()[pygame.K_1] and place == False and current_elixir >= playerHandKeys[0].get_elixir():
+        place = True
+        unit_key = playerHandKeys[0]  # Extract the unit key
+        if unit_key in units:
+            unit_attributes = units[unit_key]
+            toSpawn = Unit(unit_attributes, 0)
+            current_elixir -= toSpawn.get_elixir()
+            player.cardUsed(playerHandKeys[0])
+        else:
+            print(f"Unit '{unit_key}' not found in units dictionary.")
+
+        # if (current_elixir >= hog_rider_unit.get_elixir()):
+        # place = True
+        # toSpawn = hog_rider_unit.spawn_units(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
+        # current_elixir -= hog_rider_unit.get_elixir()
     if pygame.mouse.get_pressed()[0] == 0:
         place = False
     for toDraw in toSpawn:
-        pygame.draw.rect(screen,hog_rider_unit.get_color(), toDraw)
+        pygame.draw.rect(screen, hog_rider_unit.get_color(), toDraw)
     print(pygame.mouse.get_pos()[0])
     print(pygame.mouse.get_pos()[1])
 
