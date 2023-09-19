@@ -1,4 +1,6 @@
 from single_linked_list import SingleLinkedList
+from cards import *
+
 
 class Player:
     def __init__(self):
@@ -6,7 +8,12 @@ class Player:
         self.__leftTower = 3200
         self.__rightTower = 3200
         self.__mainTower = 6000
-        self.__playerDeck = []
+        self.__playerDeckArray = []
+        self.playerHand = {}
+        self.setPlayerDeck()
+        self.playerDeck = SingleLinkedList(None, self.__playerDeckArray)
+
+
 
     # Getter for elixir
     @property
@@ -18,44 +25,10 @@ class Player:
     def elixir(self, value):
         self.__elixir = value
 
-    # Getter for leftTower
-    @property
-    def leftTower(self):
-        return self.__leftTower
+    def setPlayerDeck(self):
+        for i in range(6):
+            self.__playerDeckArray.append(input("Enter a card name (e.g., unit::hog_rider):"))
 
-    # Setter for leftTower
-    @leftTower.setter
-    def leftTower(self, value):
-        self.__leftTower = value
-
-    # Getter for rightTower
-    @property
-    def rightTower(self):
-        return self.__rightTower
-
-    # Setter for rightTower
-    @rightTower.setter
-    def rightTower(self, value):
-        self.__rightTower = value
-
-    # Getter for mainTower
-    @property
-    def mainTower(self):
-        return self.__mainTower
-
-    # Setter for mainTower
-    @mainTower.setter
-    def mainTower(self, value):
-        self.__mainTower = value
-
-    # Getter for playerDeck
-    @property
-    def playerDeck(self):
-        return self.__playerDeck
-
-    # Setter for playerDeck to push back a value
-    def push_to_player_deck(self, value):
-        self.__playerDeck.append(value)
 
 
 

@@ -401,3 +401,20 @@ rocket = {
     "duration" : 0.1,
     "colors" : (255,255,255)
 }
+
+units = {
+    "units::hog_rider": hog_rider,
+    "units::ice_spirit": ice_spirit,
+    "units::musketeer": musketeer,
+    "units::ice_golem": ice_golem,
+    "units::skeletons": skeletons,
+    "units::bandit": bandit,
+    "units::royal_ghost": royal_ghost,
+    "units::minions": minions,
+    "units::pekka": pekka,
+    "units::ewiz": ewiz,
+    "units::battle_ram": battle_ram,
+    "units::goblin_gang": goblin_gang,
+    "units::knight": knight,
+    "units::princess": princess,
+}
