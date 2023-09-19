@@ -3,6 +3,7 @@ import math
 from tile import *
 from pygame.locals import *
 import math
+import Lib.heapq
 class AstarNode:
     def __init__(self,g,x,y):
         self.H = math.pow(x - 136,2) + math.pow(y - 182)
