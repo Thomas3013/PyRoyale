@@ -1,9 +1,17 @@
 import pygame
 from pygame.locals import *
+
+import playerclass
 from unitclass import Unit
 from cards import *
 from tile import *
-from deck import *
+
+##setting up player
+current_player = playerclass.Player()
+playerHandKeys = current_player.getHand()
+for i in range(len(playerHandKeys)):
+    current_player.playerHandUnits.append(Unit(unit[playerHandKeys[i]], 0))
+toSpawn = []
 pygame.init()
 
 # WINDOW DISPLAY
@@ -35,6 +43,7 @@ for i in range(11):
     image = pygame.transform.scale(image, (532, 30))
     elixir_bar_images.append(image)
 
+
 def display_elixir_bar(screen, current_elixir):
     # Ensure the elixir is within the valid range (0-10)
     current_elixir = max(0, min(10, current_elixir))
@@ -46,8 +55,9 @@ def display_elixir_bar(screen, current_elixir):
     elixir_bar_image = elixir_bar_images[elixir_bar_index]
 
     # Display elixir bar and deck bg images at correct pos
-    screen.blit(deck_background,(0,screen_height - 192))
+    screen.blit(deck_background, (0, screen_height - 192))
     screen.blit(elixir_bar_image, (4, screen_height - 45))
+
 
 # Get the current time in milliseconds
 current_time = pygame.time.get_ticks()
@@ -68,7 +78,7 @@ last_time = current_time
 timer_bg_width = 100  # Adjust this as needed
 timer_bg_height = 50  # Adjust this as needed
 
-#Sample unit using hog rider hashmap
+# Sample unit using hog rider hashmap
 hog_rider_unit = Unit(hog_rider, 0)
 toSpawn = []
 
@@ -76,15 +86,6 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_1:
-                play_card(0)
-            elif event.key == pygame.K_2:
-                play_card(1)
-            elif event.key == pygame.K_3:
-                play_card(2)
-            elif event.key == pygame.K_4:
-                play_card(3)    
 
     # Get the current time in milliseconds
     current_time = pygame.time.get_ticks()
@@ -128,7 +129,7 @@ while run:
     # Draw the arena in the center of the screen
     screen.blit(background, (arena_x, arena_y))
 
-    # Call the function to display the elixir bar
+    # Call the function to display the elixir bar1
     display_elixir_bar(screen, current_elixir)
 
     # Blit the timer background onto the screen in the top right corner
@@ -139,16 +140,30 @@ while run:
     timer_surface = font.render(timer_text, True, (255, 255, 255))
     timer_rect = timer_surface.get_rect(topright=(screen_width - 10, 10))
     screen.blit(timer_surface, timer_rect)
-    if pygame.mouse.get_pressed()[0] == 1 and place == False:
-        if(current_elixir >= hog_rider_unit.get_elixir()):
-            place = True
-            toSpawn = hog_rider_unit.spawn_units(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
-            current_elixir -= hog_rider_unit.get_elixir()
-    if pygame.mouse.get_pressed()[0] == 0:
-        place = False
-    for toDraw in toSpawn:
-        pygame.draw.rect(screen,hog_rider_unit.get_color(), toDraw)
 
+    if pygame.key.get_pressed()[pygame.K_1] and current_elixir >= current_player.playerHandUnits[0].get_elixir():
+        for key in playerHandKeys:
+            print(key)
+        print("-----------")
+        current_elixir -= current_player.playerHandUnits[0].get_elixir()
+        current_player.cardUsed(playerHandKeys[0],0)
+
+
+
+        # if (current_elixir >= hog_ride1r_unit.get_elixir()):
+        # place = True
+            # current_elixir -= hog_rider_unit.get_elixir()
+
+                #toSpawn = hog_rider_unit.spawn_units(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
+            #for toDraw in toSpawn:
+                #1pygame.draw.rect(screen, unit.get_color(), toDraw)
+
+    #for i in range(len(toSpawn)):
+        #color = toSpawn[i][0].get_color()  # Get the color
+        #rectangles = toSpawn[i][0].spawn_units(toSpawn[i][1], toSpawn[i][2])  # Get a list of rectangles
+
+        #for rect in rectangles:
+            #pygame.draw.rect(screen, color, rect)  # Draw each rectangle with the given color
     pygame.display.update()
 
 pygame.quit()
