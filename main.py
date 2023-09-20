@@ -7,11 +7,15 @@ from cards import *
 from tile import *
 
 ##setting up player
-current_player = playerclass.Player()
-playerHandKeys = current_player.getHand()
-for i in range(len(playerHandKeys)):
-    current_player.playerHandUnits.append(Unit(unit[playerHandKeys[i]], 0))
+current_player = playerclass.Player()  # making current player
 toSpawn = []
+
+
+def getDictValue(troop):
+    val = troop["cost"]
+    return val
+
+
 pygame.init()
 
 # WINDOW DISPLAY
@@ -141,29 +145,74 @@ while run:
     timer_rect = timer_surface.get_rect(topright=(screen_width - 10, 10))
     screen.blit(timer_surface, timer_rect)
 
-    if pygame.key.get_pressed()[pygame.K_1] and current_elixir >= current_player.playerHandUnits[0].get_elixir():
-        for key in playerHandKeys:
-            print(key)
+    if (pygame.key.get_pressed()[pygame.K_1]) and current_elixir >= (getDictValue(unit[current_player.playerHandArray[0]])):
         print("-----------")
-        current_elixir -= current_player.playerHandUnits[0].get_elixir()
-        current_player.cardUsed(playerHandKeys[0],0)
-
+        for val in current_player.playerHandArray:
+            print(val)
+        print("-----------")
+        current_elixir -= getDictValue(unit[current_player.playerHandArray[0]])
+        current_player.cardUsed(current_player.playerHandArray[0], 0)
 
 
         # if (current_elixir >= hog_ride1r_unit.get_elixir()):
         # place = True
-            # current_elixir -= hog_rider_unit.get_elixir()
+        # current_elixir -= hog_rider_unit.get_elixir()
 
-                #toSpawn = hog_rider_unit.spawn_units(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
-            #for toDraw in toSpawn:
-                #1pygame.draw.rect(screen, unit.get_color(), toDraw)
+        # toSpawn = hog_rider_unit.spawn_units(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
+        # for toDraw in toSpawn:
+        # 1pygame.draw.rect(screen, unit.get_color(), toDraw)
+    if (pygame.key.get_pressed()[pygame.K_2]) and current_elixir >= (getDictValue(unit[current_player.playerHandArray[1]])):
+        print("-----------")
+        for val in current_player.playerHandArray:
+            print(val)
+        print("-----------")
+        current_elixir -= getDictValue(unit[current_player.playerHandArray[1]])
+        current_player.cardUsed(current_player.playerHandArray[1], 1)
 
-    #for i in range(len(toSpawn)):
-        #color = toSpawn[i][0].get_color()  # Get the color
-        #rectangles = toSpawn[i][0].spawn_units(toSpawn[i][1], toSpawn[i][2])  # Get a list of rectangles
+        # if (current_elixir >= hog_ride1r_unit.get_elixir()):
+        # place = True
+        # current_elixir -= hog_rider_unit.get_elixir()
 
-        #for rect in rectangles:
-            #pygame.draw.rect(screen, color, rect)  # Draw each rectangle with the given color
+        # toSpawn = hog_rider_unit.spawn_units(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
+        # for toDraw in toSpawn:
+        # 1pygame.draw.rect(screen, unit.get_color(), toDraw)
+    if (pygame.key.get_pressed()[pygame.K_3]) and current_elixir >= (getDictValue(unit[current_player.playerHandArray[2]])):
+        print("-----------")
+        for val in current_player.playerHandArray:
+            print(val)
+        print("-----------")
+        current_elixir -= getDictValue(unit[current_player.playerHandArray[0]])
+        current_player.cardUsed(current_player.playerHandArray[2], 2)
+
+        # if (current_elixir >= hog_ride1r_unit.get_elixir()):
+        # place = True
+        # current_elixir -= hog_rider_unit.get_elixir()
+
+        # toSpawn = hog_rider_unit.spawn_units(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
+        # for toDraw in toSpawn:
+        # 1pygame.draw.rect(screen, unit.get_color(), toDraw)
+    if (pygame.key.get_pressed()[pygame.K_4]) and current_elixir >= (getDictValue(unit[current_player.playerHandArray[3]])):
+        print("-----------")
+        for val in current_player.playerHandArray:
+            print(val)
+        print("-----------")
+        current_elixir -= getDictValue(unit[current_player.playerHandArray[1]])
+        current_player.cardUsed(current_player.playerHandArray[3], 3)
+
+        # if (current_elixir >= hog_ride1r_unit.get_elixir()):
+        # place = True
+        # current_elixir -= hog_rider_unit.get_elixir()
+
+        # toSpawn = hog_rider_unit.spawn_units(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
+        # for toDraw in toSpawn:
+        # 1pygame.draw.rect(screen, unit.get_color(), toDraw)
+
+    # for i in range(len(toSpawn)):
+    # color = toSpawn[i][0].get_color()  # Get the color
+    # rectangles = toSpawn[i][0].spawn_units(toSpawn[i][1], toSpawn[i][2])  # Get a list of rectangles
+
+    # for rect in rectangles:
+    # pygame.draw.rect(screen, color, rect)  # Draw each rectangle with the given color
     pygame.display.update()
 
 pygame.quit()

@@ -9,7 +9,7 @@ from cards import *
 
 class AstarNode:
     def __init__(self, g, x, y):
-        self.H = math.pow(x - 136, 2) + math.pow(y - 182)
+        self.H = math.pow(x - 136, 2) + math.pow(y - 182,2)
         self.G = g
         self.F = self.G + self.H
         self.x = x

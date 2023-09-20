@@ -13,9 +13,10 @@ class Player:
         self.setPlayerDeck()
         self.playerDeck = SingleLinkedList()
         self.playerDeck.initializeDeck(self.__playerDeckArray)
-        self.playerHand = self.playerDeck.initializeHand()
+        self.playerHandKeys = self.playerDeck.initializeHand()
+        self.playerHandArray = self.getHand()
         self.pointer = self.playerDeck.next.next.next.next
-        self.playerHandUnits = []
+
 
     # Getter for elixir
     @property
@@ -37,25 +38,22 @@ class Player:
         self.__playerDeckArray.append("unit::goblin_gang")
         self.__playerDeckArray.append("unit::knight")
 
+
         # for i in range(8):
         # self.__playerDeckArray.append(input("Enter a card name (e.g., unit::hog_rider):"))
 
     def cardUsed(self, card, position):
-        print(card)
-
-        while self.pointer.val in self.playerHand:
-            print(self.pointer.val)
+        while self.pointer.val in self.playerHandKeys:
             self.pointer = self.pointer.next
-            if self.pointer.val in self.playerHand:
+            if self.pointer.val in self.playerHandKeys:
                 break
-        self.playerHand[self.pointer.val] = 1
-        if card in self.playerHand:
-            del self.playerHand[card]
-        self.playerHandUnits[position] = (Unit(unit[self.pointer.val], 0))
-        return self.playerHandUnits
+        self.playerHandKeys[self.pointer.val] = 1
+        if card in self.playerHandKeys:
+            del self.playerHandKeys[card]
+        self.playerHandArray[position] = self.pointer.val
 
     def getHand(self):
         keys = []
-        for field, possible_values in self.playerHand.items():
+        for field, possible_values in self.playerHandKeys.items():
             keys.append(field)
         return keys
