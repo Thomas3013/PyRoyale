@@ -1,10 +1,12 @@
 class gblvars:
-    def __init__(self):
-        self.num = 0
+    def __init__(self, int):
+        self.num = int
 
-    def unitID(self):
+    def giveID(self):
         self.num = self.num+1
         return self.num
     
 
-unitIDcounter = gblvars()
+UnitID = gblvars(0)
+SpellID = gblvars(500)
+BuildID = gblvars(1000)

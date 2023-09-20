@@ -3,6 +3,7 @@
 # target: 0 air ground & building !!  1 ground & building !! 2 building
 # transport: 0 ground !! 1 air
 hog_rider = {
+    "name": "hog rider",
     "cost": 0,
     "hp": 1696,
     "dmg": 318,
@@ -22,6 +23,7 @@ hog_rider = {
 }
 
 ice_spirit = {
+    "name": "ice spirit",
     "cost": 0,
     "hp": 230,
     "dmg": 318,
@@ -41,6 +43,7 @@ ice_spirit = {
 }
 
 musketeer = {
+    "name": "musketeer",
     "cost": 0,
     "hp": 720,
     "dmg": 218,
@@ -60,6 +63,7 @@ musketeer = {
 }
 
 ice_golem = {
+    "name": "ice golem",
     "cost": 0,
     "hp": 1197,
     "dmg": 84,
@@ -79,6 +83,7 @@ ice_golem = {
 }
 
 skeletons = {
+    "name": "skeletons",
     "cost": 0,
     "hp": 81,
     "dmg": 81,
@@ -98,6 +103,7 @@ skeletons = {
 }
 
 cannon = {
+    "name": "cannon",
     "cost": 3,
     "hp": 824,
     "dmg": 212,
@@ -114,6 +120,7 @@ cannon = {
 }
 
 log = {
+    "name": "the log",
     "cost": 2,
     "dmg": 290,
     "tower_dmg": 58,
@@ -131,6 +138,7 @@ log = {
 }
 
 fireball = {
+    "name": "fireball",
     "cost": 4,
     "dmg": 689,
     "tower_dmg": 206,
@@ -148,6 +156,7 @@ fireball = {
 }
 
 bandit = {
+    "name": "bandit",
     "cost": 0,
     "hp": 907,
     "dmg": 193,
@@ -167,6 +176,7 @@ bandit = {
 }
 
 royal_ghost = {
+    "name": "royal ghost",
     "cost": 0,
     "hp": 1210,
     "dmg": 261,
@@ -186,6 +196,7 @@ royal_ghost = {
 }
 
 minions = {
+    "name": "minions",
     "cost": 0,
     "hp": 230,
     "dmg": 117,
@@ -205,6 +216,7 @@ minions = {
 }
 
 pekka = {
+    "name": "pekka",
     "cost": 0,
     "hp": 3760,
     "dmg": 816,
@@ -224,6 +236,7 @@ pekka = {
 }
 
 poison = {
+    "name": "poison",
     "cost": 4,
     "dmg": 91,  # hits 8 times
     "tower_dmg": 27,
@@ -241,6 +254,7 @@ poison = {
 }
 
 zap = {
+    "name": "zap",
     "cost": 0,
     "dmg": 192,
     "tower_dmg": 57,
@@ -258,6 +272,7 @@ zap = {
 }
 
 ewiz = {
+    "name": "electro wizard",
     "cost": 0,
     "hp": 713,
     "dmg": 110,  # hits 2x
@@ -277,6 +292,7 @@ ewiz = {
 }
 
 battle_ram = {
+    "name": "battle ram",
     "cost": 0,
     "hp": 966,
     "dmg": 286,
@@ -296,6 +312,7 @@ battle_ram = {
 }
 
 goblin_barrel = {
+    "name": "goblin barrel",
     "cost": 0,
     "dmg": 0,
     "tower_dmg": 0,
@@ -313,6 +330,7 @@ goblin_barrel = {
 }
 
 goblin_gang = {
+    "name": "goblin gang",
     "cost": 0,
     "hp": 202,
     "dmg": 120,
@@ -332,6 +350,7 @@ goblin_gang = {
 }
 
 inferno_tower = {
+    "name": "inferno tower",
     "cost": 0,
     "hp": 1749,
     "dmg": 42,
@@ -348,6 +367,7 @@ inferno_tower = {
 }
 
 knight = {
+    "name": "knight",
     "cost": 0,
     "hp": 1607,
     "dmg": 202,
@@ -367,6 +387,7 @@ knight = {
 }
 
 princess = {
+    "name": "princess",
     "cost": 0,
     "hp": 261,
     "dmg": 169,
@@ -386,6 +407,7 @@ princess = {
 }
 
 rocket = {
+    "name": "rocket",
     "cost": 6,
     "dmg": 1484,
     "tower_dmg": 371,

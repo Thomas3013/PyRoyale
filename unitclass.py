@@ -5,6 +5,7 @@ from pygame.locals import *
 import math
 import Lib.heapq
 from cards import *
+from gblvars import *
 
 
 class AstarNode:
@@ -34,6 +35,7 @@ class AstarNode:
 
 class Unit:
     def __init__(self, troop, player):
+        self.m_name = troop["name"]
         self.m_cost = troop["cost"]
         self.m_hp = troop["hp"]
         self.m_dmg = troop["dmg"]
@@ -47,15 +49,24 @@ class Unit:
         self.m_transport = troop["transport"]
         self.m_width = troop["width"]
         self.m_height = troop["height"]
+        self.m_ability = troop["ability"]
+        self.m_cc = troop["cc"]
         self.m_units = []
         self.m_colors = (troop["colors"])
         self.player = player
+        self.id = UnitID.giveID()
 
     def get_color(self):
         return self.m_colors
 
     def get_elixir(self):
         return self.m_cost
+    
+    def get_name(self):
+        return self.m_name
+    
+    def get_id(self):
+        return self.id
 
     def get_tile_index(self, mouseX, mouseY):
         # mouseX = mouseX - 54
