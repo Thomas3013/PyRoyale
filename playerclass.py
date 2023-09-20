@@ -41,6 +41,7 @@ class Player:
         # self.__playerDeckArray.append(input("Enter a card name (e.g., unit::hog_rider):"))
 
     def cardUsed(self, card, position):
+        print(card)
 
         while self.pointer.val in self.playerHand:
             print(self.pointer.val)
@@ -49,8 +50,9 @@ class Player:
                 break
         self.playerHand[self.pointer.val] = 1
         if card in self.playerHand:
-            self.playerHand.pop(card,None)
+            del self.playerHand[card]
         self.playerHandUnits[position] = (Unit(unit[self.pointer.val], 0))
+        return self.playerHandUnits
 
     def getHand(self):
         keys = []
