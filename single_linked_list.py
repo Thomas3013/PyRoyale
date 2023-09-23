@@ -1,6 +1,4 @@
 import random
-import unitclass
-from cards import *
 
 
 class SingleLinkedList:
@@ -26,8 +24,6 @@ class SingleLinkedList:
             hand[current.val] = 1
             current = current.next
         return hand
-
-
 
     # def printList(self, array):  # testing to print out list
     # current = self

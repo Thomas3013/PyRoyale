@@ -1,6 +1,5 @@
 import pygame
 from pygame.locals import *
-
 import playerclass
 from unitclass import Unit
 from cards import *
@@ -8,7 +7,6 @@ from tile import *
 
 ##setting up player
 current_player = playerclass.Player()  # making current player
-toSpawn = []
 
 
 def getDictValue(troop):
@@ -154,13 +152,6 @@ while run:
         current_player.cardUsed(current_player.playerHandArray[0], 0)
 
 
-        # if (current_elixir >= hog_ride1r_unit.get_elixir()):
-        # place = True
-        # current_elixir -= hog_rider_unit.get_elixir()
-
-        # toSpawn = hog_rider_unit.spawn_units(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
-        # for toDraw in toSpawn:
-        # 1pygame.draw.rect(screen, unit.get_color(), toDraw)
     if (pygame.key.get_pressed()[pygame.K_2]) and current_elixir >= (getDictValue(unit[current_player.playerHandArray[1]])):
         print("-----------")
         for val in current_player.playerHandArray:
@@ -169,13 +160,6 @@ while run:
         current_elixir -= getDictValue(unit[current_player.playerHandArray[1]])
         current_player.cardUsed(current_player.playerHandArray[1], 1)
 
-        # if (current_elixir >= hog_ride1r_unit.get_elixir()):
-        # place = True
-        # current_elixir -= hog_rider_unit.get_elixir()
-
-        # toSpawn = hog_rider_unit.spawn_units(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
-        # for toDraw in toSpawn:
-        # 1pygame.draw.rect(screen, unit.get_color(), toDraw)
     if (pygame.key.get_pressed()[pygame.K_3]) and current_elixir >= (getDictValue(unit[current_player.playerHandArray[2]])):
         print("-----------")
         for val in current_player.playerHandArray:
@@ -184,13 +168,6 @@ while run:
         current_elixir -= getDictValue(unit[current_player.playerHandArray[0]])
         current_player.cardUsed(current_player.playerHandArray[2], 2)
 
-        # if (current_elixir >= hog_ride1r_unit.get_elixir()):
-        # place = True
-        # current_elixir -= hog_rider_unit.get_elixir()
-
-        # toSpawn = hog_rider_unit.spawn_units(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
-        # for toDraw in toSpawn:
-        # 1pygame.draw.rect(screen, unit.get_color(), toDraw)
     if (pygame.key.get_pressed()[pygame.K_4]) and current_elixir >= (getDictValue(unit[current_player.playerHandArray[3]])):
         print("-----------")
         for val in current_player.playerHandArray:
@@ -205,7 +182,7 @@ while run:
 
         # toSpawn = hog_rider_unit.spawn_units(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
         # for toDraw in toSpawn:
-        # 1pygame.draw.rect(screen, unit.get_color(), toDraw)
+        # 1pygame.draw.rect(screen, unit.get_color(), toDraw)##make fuc later
 
     # for i in range(len(toSpawn)):
     # color = toSpawn[i][0].get_color()  # Get the color

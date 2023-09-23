@@ -3,7 +3,6 @@ import math
 from tile import *
 from pygame.locals import *
 import math
-import Lib.heapq
 from cards import *
 
 

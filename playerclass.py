@@ -1,6 +1,4 @@
 from single_linked_list import SingleLinkedList
-from cards import *
-from unitclass import *
 
 
 class Player:
@@ -16,6 +14,7 @@ class Player:
         self.playerHandKeys = self.playerDeck.initializeHand()
         self.playerHandArray = self.getHand()
         self.pointer = self.playerDeck.next.next.next.next
+        self.spawned = False
 
 
     # Getter for elixir
