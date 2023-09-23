@@ -16,7 +16,6 @@ class Player:
         self.pointer = self.playerDeck.next.next.next.next
         self.spawned = False
 
-
     # Getter for elixir
     @property
     def elixir(self):
@@ -37,19 +36,24 @@ class Player:
         self.__playerDeckArray.append("unit::goblin_gang")
         self.__playerDeckArray.append("unit::knight")
 
-
         # for i in range(8):
         # self.__playerDeckArray.append(input("Enter a card name (e.g., unit::hog_rider):"))
 
     def cardUsed(self, card, position):
         while self.pointer.val in self.playerHandKeys:
+            # checking if pointer value is in handkeys hashmap
             self.pointer = self.pointer.next
-            if self.pointer.val in self.playerHandKeys:
+            if self.pointer.val not in self.playerHandKeys:
                 break
         self.playerHandKeys[self.pointer.val] = 1
         if card in self.playerHandKeys:
             del self.playerHandKeys[card]
         self.playerHandArray[position] = self.pointer.val
+
+        # debug, ignore
+        # for val in self.playerHandArray:
+        # print(val)
+        # print(len(self.playerHandKeys))
 
     def getHand(self):
         keys = []
