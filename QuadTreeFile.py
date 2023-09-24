@@ -4,7 +4,7 @@ from unitclass import Unit
 
 class Point:
 
-    def __init__(self, payload=Unit):
+    def __init__(self, payload=None):
         self.payload = payload
         self.x = payload.get_x()
         self.y = payload.get_y()
@@ -110,7 +110,7 @@ class QuadTree:
 
     def query(self, boundary, found_points):
         if not self.boundary.intersects(boundary):
-            return False  ## checkign if boundary is in boundary
+            return False  # checking if boundary is in boundary
         for point in self.points:
             if boundary.contains(point):
                 found_points.append(point)
@@ -123,7 +123,7 @@ class QuadTree:
 
     def query_circle(self, boundary, center, radius, found_points):
         # boundary = rect obj
-        # dont call directly call query_radius
+        # don't call directly call query_radius
         if not self.boundary.intersects(boundary):
             return False  # not in radius
         for point in self.points:
@@ -159,16 +159,6 @@ class QuadTree:
             sp + 'se: ' + str(self.se), sp + 'sw: ' + str(self.sw)])
 
 
-def iterate_quadtree(quadtree):
-    print(f"Depth {quadtree.depth}:")
-    for point in quadtree.points:
-        print(point)
-
-    if quadtree.divided:
-        iterate_quadtree(quadtree.nw)
-        iterate_quadtree(quadtree.ne)
-        iterate_quadtree(quadtree.se)
-        iterate_quadtree(quadtree.sw)
 
 
 # https://scipython.com/blog/quadtrees-2-implementation-in-python/

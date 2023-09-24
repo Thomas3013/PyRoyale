@@ -53,7 +53,7 @@ class Player:
         if card in self.playerHandKeys:
             del self.playerHandKeys[card]
         self.playerHandArray[position] = self.pointer.val
-        unitTree.insert(QuadTreeFile.Point(Unit(unit[card],self.playerNum)))
+        unitTree.insert(QuadTreeFile.Point(Unit(unit[card], self.playerNum)))
 
         #debug, ignore
         for val in self.playerHandArray:
