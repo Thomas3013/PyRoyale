@@ -50,13 +50,18 @@ class Player:
             del self.playerHandKeys[card]
         self.playerHandArray[position] = self.pointer.val
 
-        # debug, ignore
-        # for val in self.playerHandArray:
-        # print(val)
-        # print(len(self.playerHandKeys))
+        #debug, ignore
+        for val in self.playerHandArray:
+            print(val)
+        print(len(self.playerHandKeys))
 
     def getHand(self):
         keys = []
         for field, possible_values in self.playerHandKeys.items():
             keys.append(field)
         return keys
+    
+    def cardSelector(self, key):
+        if 30 <= key <= 33:
+            index = key - 30
+            return index

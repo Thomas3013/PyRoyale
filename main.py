@@ -36,6 +36,9 @@ max_elixir = 10
 elixir_generation_rate = 1 / 2.8  # Elixir every 2.8 seconds
 run = True
 place = False
+lastKey = None
+clock = pygame.time.Clock()
+fps = 60
 background = pygame.image.load('assets/bg.png')
 deck_background = pygame.image.load('assets/deck_bg.png')
 
@@ -143,22 +146,23 @@ while run:
     timer_rect = timer_surface.get_rect(topright=(screen_width - 10, 10))
     screen.blit(timer_surface, timer_rect)
 
-    if (pygame.key.get_pressed()[pygame.K_1]) and current_elixir >= (getDictValue(unit[current_player.playerHandArray[0]])):
-        current_elixir -= getDictValue(unit[current_player.playerHandArray[0]])
-        current_player.cardUsed(current_player.playerHandArray[0], 0)
+    keys = pygame.key.get_pressed()
+    if 1 in keys:
+        lastKey = keys.index(1)
+
+    if lastKey is not None:
+        index = current_player.cardSelector(lastKey)
+        if index is not None and 0 <= index < len(current_player.playerHandArray):
+            if pygame.mouse.get_pressed()[0] == 1 and place == False:
+                current_player.cardUsed(current_player.playerHandArray[index], index)
+                current_elixir -= getDictValue(unit[current_player.playerHandArray[index]])
+                place = True
+                print('card placed!')
+            if pygame.mouse.get_pressed()[0] == 0 and place == True:
+                place = False
 
 
-    if (pygame.key.get_pressed()[pygame.K_2]) and current_elixir >= (getDictValue(unit[current_player.playerHandArray[1]])):
-        current_elixir -= getDictValue(unit[current_player.playerHandArray[1]])
-        current_player.cardUsed(current_player.playerHandArray[1], 1)
-
-    if (pygame.key.get_pressed()[pygame.K_3]) and current_elixir >= (getDictValue(unit[current_player.playerHandArray[2]])):
-        current_elixir -= getDictValue(unit[current_player.playerHandArray[2]])
-        current_player.cardUsed(current_player.playerHandArray[2], 2)
-
-    if (pygame.key.get_pressed()[pygame.K_4]) and current_elixir >= (getDictValue(unit[current_player.playerHandArray[3]])):
-        current_elixir -= getDictValue(unit[current_player.playerHandArray[3]])
-        current_player.cardUsed(current_player.playerHandArray[3], 3)
+    
 
         # if (current_elixir >= hog_ride1r_unit.get_elixir()):
         # place = True
@@ -175,5 +179,6 @@ while run:
     # for rect in rectangles:
     # pygame.draw.rect(screen, color, rect)  # Draw each rectangle with the given color
     pygame.display.update()
+    clock.tick(fps)
 
 pygame.quit()

@@ -68,7 +68,7 @@ class Unit:
         return self.id
 
     def get_tile_index(self, mouseX, mouseY):
-        # mouseX = mouseX - 54
+        mouseX = mouseX - 54
         mouseX = math.floor(mouseX / 24)
         print(mouseX)
         mouseY = math.floor(mouseY / 24)
