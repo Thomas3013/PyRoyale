@@ -1,8 +1,13 @@
+import QuadTreeFile
 from single_linked_list import SingleLinkedList
+from QuadTreeFile import *
+from cards import *
+from unitclass import *
 
 
 class Player:
-    def __init__(self):
+    def __init__(self,player):
+        self.playerNum = player
         self.__elixir = 0
         self.__leftTower = 3200
         self.__rightTower = 3200
@@ -48,6 +53,7 @@ class Player:
         if card in self.playerHandKeys:
             del self.playerHandKeys[card]
         self.playerHandArray[position] = self.pointer.val
+        unitTree.insert(QuadTreeFile.Point(Unit(unit[card],self.playerNum)))
 
         #debug, ignore
         for val in self.playerHandArray:

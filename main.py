@@ -7,7 +7,7 @@ from tile import *
 import math
 
 ##setting up player
-current_player = playerclass.Player()  # making current player
+current_player = playerclass.Player(0)  # making current player
 
 
 def getDictValue(troop):
@@ -16,7 +16,7 @@ def getDictValue(troop):
 
 
 pygame.init()
-
+1
 # WINDOW DISPLAY
 screen_width = 540
 screen_height = 960

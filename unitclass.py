@@ -57,6 +57,7 @@ class Unit:
         self.placed = False
         self.x = None
         self.y = None
+        self.get_tile_index(pygame.mouse.get_pos()[0],pygame.mouse.get_pos()[1])
 
     def get_color(self):
         return self.m_colors

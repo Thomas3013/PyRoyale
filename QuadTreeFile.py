@@ -1,12 +1,15 @@
 import numpy as np
+from unitclass import Unit
 
 
 class Point:
 
-    def __init__(self, payload=None):
+    def __init__(self, payload=Unit):
         self.payload = payload
         self.x = payload.get_x()
         self.y = payload.get_y()
+        print(self.y)
+        print(self.x)
 
     def __repr__(self):
         return '{}: {}'.format(str((self.x, self.y)), repr(self.payload))
