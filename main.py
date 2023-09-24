@@ -4,6 +4,7 @@ import playerclass
 from unitclass import Unit
 from cards import *
 from tile import *
+import math
 
 ##setting up player
 current_player = playerclass.Player()  # making current player
@@ -143,20 +144,28 @@ while run:
     timer_rect = timer_surface.get_rect(topright=(screen_width - 10, 10))
     screen.blit(timer_surface, timer_rect)
 
-    if (pygame.key.get_pressed()[pygame.K_1]) and current_elixir >= (getDictValue(unit[current_player.playerHandArray[0]])):
+
+    if (pygame.key.get_pressed()[pygame.K_1]) and current_elixir >= (
+            getDictValue(unit[current_player.playerHandArray[0]])):
+
         current_elixir -= getDictValue(unit[current_player.playerHandArray[0]])
         current_player.cardUsed(current_player.playerHandArray[0], 0)
 
+    if (pygame.key.get_pressed()[pygame.K_2]) and current_elixir >= (
+            getDictValue(unit[current_player.playerHandArray[1]])):
 
-    if (pygame.key.get_pressed()[pygame.K_2]) and current_elixir >= (getDictValue(unit[current_player.playerHandArray[1]])):
         current_elixir -= getDictValue(unit[current_player.playerHandArray[1]])
         current_player.cardUsed(current_player.playerHandArray[1], 1)
 
-    if (pygame.key.get_pressed()[pygame.K_3]) and current_elixir >= (getDictValue(unit[current_player.playerHandArray[2]])):
+    if (pygame.key.get_pressed()[pygame.K_3]) and current_elixir >= (
+            getDictValue(unit[current_player.playerHandArray[2]])):
+
         current_elixir -= getDictValue(unit[current_player.playerHandArray[2]])
         current_player.cardUsed(current_player.playerHandArray[2], 2)
 
-    if (pygame.key.get_pressed()[pygame.K_4]) and current_elixir >= (getDictValue(unit[current_player.playerHandArray[3]])):
+    if (pygame.key.get_pressed()[pygame.K_4]) and current_elixir >= (
+            getDictValue(unit[current_player.playerHandArray[3]])):
+
         current_elixir -= getDictValue(unit[current_player.playerHandArray[3]])
         current_player.cardUsed(current_player.playerHandArray[3], 3)
 

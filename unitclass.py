@@ -54,6 +54,7 @@ class Unit:
         self.m_colors = (troop["colors"])
         self.player = player
         self.id = UnitID.giveID()
+        self.placed = False
 
     def get_color(self):
         return self.m_colors
@@ -68,14 +69,13 @@ class Unit:
         return self.id
 
     def get_tile_index(self, mouseX, mouseY):
-        # mouseX = mouseX - 54
+        mouseX = mouseX - 54
         mouseX = math.floor(mouseX / 24)
         print(mouseX)
         mouseY = math.floor(mouseY / 24)
         print(mouseY)
         tile = tiles[mouseY][mouseX]  # flipped?
         if tile == 1:
-
             return [(mouseX * 24), (mouseY * 24) - (self.m_height / 2)]
         else:
             print("invalid placement")
