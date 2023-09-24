@@ -4,6 +4,16 @@ from QuadTreeFile import *
 from cards import *
 from unitclass import *
 
+#loading images for cards
+cardslot_images = []
+for i in range(4):
+    image = pygame.image.load(f'assets/card{i}.png')
+    cardslot_images.append(image)
+selected = pygame.image.load(f'assets/cardselect.png')
+
+#coordinates for every card
+cardCoords = [101, 209, 317, 425]
+
 
 class Player:
     def __init__(self,player):
@@ -66,7 +76,17 @@ class Player:
             keys.append(field)
         return keys
     
+    # gets input from user and returns index of card selected ie: 0, 1, 2, 3
     def cardSelector(self, key):
         if 30 <= key <= 33:
             index = key - 30
             return index
+        
+    # display update for cards and selected card    
+    def displayCards(self, screen, index):
+        screen.blit(cardslot_images[0],(cardCoords[0], 776))
+        screen.blit(cardslot_images[1],(cardCoords[1], 776))
+        screen.blit(cardslot_images[2],(cardCoords[2], 776))
+        screen.blit(cardslot_images[3],(cardCoords[3], 776))
+        screen.blit(selected,(cardCoords[index]-4, 772))
+        
