@@ -16,7 +16,7 @@ def getDictValue(troop):
 
 
 pygame.init()
-1
+
 # WINDOW DISPLAY
 screen_width = 540
 screen_height = 960
@@ -151,8 +151,15 @@ while run:
     if 1 in keys:
         lastKey = keys.index(1)
 
+      
+        
     if lastKey is not None:
         index = current_player.cardSelector(lastKey)
+
+        #updates card display!
+        current_player.displayCards(screen, index)
+
+        #placing logic
         if index is not None and 0 <= index < len(current_player.playerHandArray):
             if pygame.mouse.get_pressed()[0] == 1 and place == False:
                 current_player.cardUsed(current_player.playerHandArray[index], index)
