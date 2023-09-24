@@ -50,23 +50,26 @@ class Unit:
         self.m_height = troop["height"]
         self.m_ability = troop["ability"]
         self.m_cc = troop["cc"]
-        self.m_units = []
+        self.m_units = None
         self.m_colors = (troop["colors"])
         self.player = player
         self.id = UnitID.giveID()
         self.placed = False
+        self.x = None
+        self.y = None
 
     def get_color(self):
         return self.m_colors
-
     def get_elixir(self):
         return self.m_cost
-    
     def get_name(self):
         return self.m_name
-    
     def get_id(self):
         return self.id
+    def get_x(self):
+        return self.x
+    def get_y(self):
+        return self.y
 
     def get_tile_index(self, mouseX, mouseY):
         mouseX = mouseX - 54
@@ -76,16 +79,17 @@ class Unit:
         print(mouseY)
         tile = tiles[mouseY][mouseX]  # flipped?
         if tile == 1:
+            self.x = mouseX * 24
+            self.y = (mouseY * 24) - (self.m_height/2)
             return [(mouseX * 24), (mouseY * 24) - (self.m_height / 2)]
         else:
             print("invalid placement")
             return -1
 
-    def spawn_units(self, mouseX, mouseY):
+    def spawn_units(self, mouseX, mouseY,i):
         pos = self.get_tile_index(mouseX, mouseY)
-        if (pos != -1):
-            for x in range(self.m_count):
-                self.m_units.append(pygame.Rect(pos[0] + (1.05 * x), pos[1] + (1.05 * x), self.m_width, self.m_height))
+        if pos != -1:
+            self.m_units = (pygame.Rect(pos[0] + (1.05 * i), pos[1] + (1.05 * i), self.m_width, self.m_height))
         return self.m_units
 
     def aStarLeft(self, MouseX, MouseY):

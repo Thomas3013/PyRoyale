@@ -3,10 +3,10 @@ import numpy as np
 
 class Point:
 
-    def __init__(self, x, y, payload=None):
-        self.x = x
-        self.y = y
+    def __init__(self, payload=None):
         self.payload = payload
+        self.x = payload.get_x()
+        self.y = payload.get_y()
 
     def __repr__(self):
         return '{}: {}'.format(str((self.x, self.y)), repr(self.payload))
@@ -142,7 +142,7 @@ class QuadTree:
 
         npoints = len(self.points)
         if self.divided:
-            npoints += len(self.nw)+len(self.ne)+len(self.se)+len(self.sw)
+            npoints += len(self.nw) + len(self.ne) + len(self.se) + len(self.sw)
         return npoints
 
     def __str__(self):
@@ -155,4 +155,19 @@ class QuadTree:
             sp + 'nw: ' + str(self.nw), sp + 'ne: ' + str(self.ne),
             sp + 'se: ' + str(self.se), sp + 'sw: ' + str(self.sw)])
 
+
+def iterate_quadtree(quadtree):
+    print(f"Depth {quadtree.depth}:")
+    for point in quadtree.points:
+        print(point)
+
+    if quadtree.divided:
+        iterate_quadtree(quadtree.nw)
+        iterate_quadtree(quadtree.ne)
+        iterate_quadtree(quadtree.se)
+        iterate_quadtree(quadtree.sw)
+
+
 # https://scipython.com/blog/quadtrees-2-implementation-in-python/
+
+unitTree = QuadTree(Rectangle(268, 381, 482 - 54, 764))
