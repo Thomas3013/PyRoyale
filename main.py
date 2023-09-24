@@ -166,17 +166,17 @@ while run:
     timer_rect = timer_surface.get_rect(topright=(screen_width - 10, 10))
     screen.blit(timer_surface, timer_rect)
 
+    #display cards
+    current_player.displayCards(screen)
+
     keys = pygame.key.get_pressed()
     if 1 in keys:
         lastKey = keys.index(1)
 
-      
-        
     if lastKey is not None:
         index = current_player.cardSelector(lastKey)
-
-        #updates card display!
-        current_player.displayCards(screen, index)
+        #display selected card
+        current_player.displaySelected(screen, index)
 
         #placing logic
         if index is not None and 0 <= index < len(current_player.playerHandArray):

@@ -136,9 +136,11 @@ class Unit:
         self.y = y
 
     def get_path(self):
-        if (self.x > )
-            goal =
-        astar()
+        ## commented out to test !!
+        #if (self.x > )
+        #    goal =
+        #astar()
+        print('output placeholder')
 
     def get_tile_index(self, mouseX, mouseY):
         mouseX = mouseX - 54
@@ -148,7 +150,7 @@ class Unit:
         print(mouseY)
         tile = tiles[mouseY][mouseX]  # flipped?
         if tile == 1:
-            self.x = mouseX * 24
+            self.x = (mouseX * 24) + 54
             self.y = (mouseY * 24) - (self.m_height / 2)
             return [int(mouseX * 24), int((mouseY * 24) - (self.m_height / 2))]
         if tile == 0:
@@ -165,7 +167,7 @@ class Unit:
         return self.m_units
 
     def movement(self):
-
+        print('output placeholder')
 
 
 

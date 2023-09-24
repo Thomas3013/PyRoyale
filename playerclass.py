@@ -81,12 +81,13 @@ class Player:
         if 30 <= key <= 33:
             index = key - 30
             return index
-        
-    # display update for cards and selected card    
-    def displayCards(self, screen, index):
+
+    def displayCards(self,screen):
         screen.blit(cardslot_images[0],(cardCoords[0], 776))
         screen.blit(cardslot_images[1],(cardCoords[1], 776))
         screen.blit(cardslot_images[2],(cardCoords[2], 776))
         screen.blit(cardslot_images[3],(cardCoords[3], 776))
+    # display update for cards and selected card    
+    def displaySelected(self, screen, index):
         screen.blit(selected,(cardCoords[index]-4, 772))
         
