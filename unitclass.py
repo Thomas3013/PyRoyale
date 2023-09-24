@@ -2,32 +2,9 @@ import pygame
 from tile import *
 import math
 from gblvars import *
-
-
-class AstarNode:
-    def __init__(self, g, x, y):
-        self.H = math.pow(x - 136, 2) + math.pow(y - 182, 2)
-        self.G = g
-        self.F = self.G + self.H
-        self.x = x
-        self.y = y
-        self.walkable = 0  # call wings function here
-
-    def Hgetter(self):
-        return self.H
-
-    def Ggetter(self):
-        return self.G
-
-    def Fgetter(self):
-        return self.F
-
-    def Xgetter(self):
-        return self.x
-
-    def Ygetter(self):
-        return self.y
-
+import heapq
+import AstarAlgorithm
+from AstarAlgorithm import Node, astar
 
 class Unit:
     def __init__(self, troop, player):
@@ -54,7 +31,9 @@ class Unit:
         self.placed = False
         self.x = None
         self.y = None
-        self.get_tile_index(pygame.mouse.get_pos()[0],pygame.mouse.get_pos()[1])
+        self.get_tile_index(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
+        self.starting_node = AstarAlgorithm.Node(None,(self.x,self.y))
+        self.path = get_path()
         # self.unit_rect_stats = pygame.Rect(self.x,self.y,self.m_width,self.m_height)
 
     def get_name(self):
@@ -156,6 +135,11 @@ class Unit:
     def set_y(self, y):
         self.y = y
 
+    def get_path(self):
+        if (self.x > )
+            goal =
+        astar()
+
     def get_tile_index(self, mouseX, mouseY):
         mouseX = mouseX - 54
         mouseX = math.floor(mouseX / 24)
@@ -167,9 +151,12 @@ class Unit:
             self.x = mouseX * 24
             self.y = (mouseY * 24) - (self.m_height / 2)
             return [int(mouseX * 24), int((mouseY * 24) - (self.m_height / 2))]
-        else:
+        if tile == 0:
             print("invalid placement")
             return -1
+        if tile == 8:
+            print("CASTLE")
+            return -7
 
     def spawn_units(self, mouseX, mouseY, i):
         pos = self.get_tile_index(mouseX, mouseY)
@@ -177,24 +164,10 @@ class Unit:
             self.m_units = (pygame.Rect(pos[0] + (1.05 * i), pos[1] + (1.05 * i), self.m_width, self.m_height))
         return self.m_units
 
-    def aStarLeft(self, MouseX, MouseY):
-        startNode = AstarNode(0, MouseX, MouseY)
-        openlist = []
-        closedlist = []
-        openlist.append(startNode)
-        currentNode = startNode
-        pathed = False
-        i = 0
-        x = MouseX
-        y = MouseY
-        startX = startNode.Xgetter()
-        startY = startNode.Ygetter()
-        while (pathed is False):
-            topleft = AstarNode((startX - x - 1) + (startY - y - 1), x - 1, y - 1)
-            bottomleft = AstarNode((startX - x - 1) + (startY - y + 1), x - 1, y + 1)
-            topright = AstarNode((startX - x + 1) + (startY - y - 1), x + 1, y - 1)
-            bottomright = AstarNode((startX - x + 1) + (startY - y), x + 1, y)
-            top = AstarNode((startX - x) + (startY - y - 1), x, y - 1)
-            bottom = AstarNode((startX - x) + (startY - y + 1), x, y + 1)
-            left = AstarNode((startX - x - 1) + (startY - y), x - 1, y)
-            right = AstarNode((startX - x + 1) + (startY - y), x + 1, y)
+    def movement(self):
+
+
+
+
+
+
