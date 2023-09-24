@@ -14,7 +14,6 @@ class Player:
         self.playerHandKeys = self.playerDeck.initializeHand()
         self.playerHandArray = self.getHand()
         self.pointer = self.playerDeck.next.next.next.next
-        self.spawned = False
 
     # Getter for elixir
     @property

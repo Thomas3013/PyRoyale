@@ -4,6 +4,7 @@ import playerclass
 from unitclass import Unit
 from cards import *
 from tile import *
+import math
 
 ##setting up player
 current_player = playerclass.Player()  # making current player
@@ -160,9 +161,6 @@ while run:
                 print('card placed!')
             if pygame.mouse.get_pressed()[0] == 0 and place == True:
                 place = False
-
-
-    
 
         # if (current_elixir >= hog_ride1r_unit.get_elixir()):
         # place = True
