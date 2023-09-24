@@ -5,6 +5,8 @@ from unitclass import Unit
 from cards import *
 from tile import *
 import math
+import QuadTreeFile
+from QuadTreeFile import *
 
 ##setting up player
 current_player = playerclass.Player(0)  # making current player
@@ -13,6 +15,26 @@ current_player = playerclass.Player(0)  # making current player
 def getDictValue(troop):
     val = troop["cost"]
     return val
+def iterate_quadtree(quadtree):
+    print("hello")
+    for point in quadtree.points:
+        print(point.x)
+        if not point.payload.get_ifDrawn():
+            print("X:")
+            print(point.payload.get_x())
+            print("Y:")
+            print(point.payload.get_y())
+            print("height:")
+            print(point.payload.get_height())
+            print("width:")
+            print(point.payload.get_width())
+            pygame.draw.rect(screen, point.payload.get_color(), (point.payload.get_x(), point.payload.get_y(), point.payload.get_width(), point.payload.get_height()))
+
+    if quadtree.divided:
+        iterate_quadtree(quadtree.nw)
+        iterate_quadtree(quadtree.ne)
+        iterate_quadtree(quadtree.se)
+        iterate_quadtree(quadtree.sw)
 
 
 pygame.init()
@@ -84,9 +106,6 @@ last_time = current_time
 timer_bg_width = 100  # Adjust this as needed
 timer_bg_height = 50  # Adjust this as needed
 
-# Sample unit using hog rider hashmap
-hog_rider_unit = Unit(hog_rider, 0)
-toSpawn = []
 
 while run:
     for event in pygame.event.get():
@@ -169,7 +188,10 @@ while run:
             if pygame.mouse.get_pressed()[0] == 0 and place == True:
                 place = False
 
-        # if (current_elixir >= hog_ride1r_unit.get_elixir()):
+
+    iterate_quadtree(QuadTreeFile.unitTree)
+
+    # if (current_elixir >= hog_ride1r_unit.get_elixir()):
         # place = True
         # current_elixir -= hog_rider_unit.get_elixir()
 
