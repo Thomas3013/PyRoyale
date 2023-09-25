@@ -4,7 +4,8 @@ import math
 from gblvars import *
 import heapq
 import AstarAlgorithm
-from AstarAlgorithm import Node, astar
+from AstarAlgorithm import AstarNode, astar
+
 
 class Unit:
     def __init__(self, troop, player):
@@ -32,8 +33,8 @@ class Unit:
         self.x = None
         self.y = None
         self.get_tile_index(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
-        self.starting_node = AstarAlgorithm.Node(None,(self.x,self.y))
-        self.path = get_path()
+        self.starting_node = AstarAlgorithm.AstarNode(None, (self.x, self.y))
+        self.path = self.get_path()
         # self.unit_rect_stats = pygame.Rect(self.x,self.y,self.m_width,self.m_height)
 
     def get_name(self):
@@ -136,11 +137,19 @@ class Unit:
         self.y = y
 
     def get_path(self):
+<<<<<<< Updated upstream
         ## commented out to test !!
         #if (self.x > )
         #    goal =
         #astar()
         print('output placeholder')
+=======
+        if self.x < 272:
+            goal = AstarNode(None, (136, 190))
+        else:
+            goal = AstarNode(None, (401, 188))
+        return astar(self.starting_node, goal)
+>>>>>>> Stashed changes
 
     def get_tile_index(self, mouseX, mouseY):
         mouseX = mouseX - 54
@@ -167,9 +176,13 @@ class Unit:
         return self.m_units
 
     def movement(self):
+<<<<<<< Updated upstream
         print('output placeholder')
 
 
 
 
 
+=======
+        return self.path.pop(0)
+>>>>>>> Stashed changes

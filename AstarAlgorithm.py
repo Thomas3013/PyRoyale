@@ -4,7 +4,7 @@ import math
 from tile import *
 
 
-class Node:
+class AstarNode:
     def __init__(self, parent=None, position=None):
         self.parent = parent
         self.position = position
@@ -16,9 +16,22 @@ class Node:
         return self.f < other.f
 
 
-def astar(start, goal, get_neighbors):
-    start_node = Node(None, start)
-    goal_node = Node(None, goal)
+def get_neighbors(node, x, y):
+    nodes = []
+    nodes.append(AstarNode(node, (x - 1, y - 1)))
+    nodes.append(AstarNode(node, (x - 1, y + 1)))
+    nodes.append(AstarNode(node, (x + 1, y - 1)))
+    nodes.append(AstarNode(node, (x + 1, y)))
+    nodes.append(AstarNode(node, (x, y - 1)))
+    nodes.append(AstarNode(node, (x, y + 1)))
+    nodes.append(AstarNode(node, (x - 1, y)))
+    nodes.append(AstarNode(node, (x + 1, y)))
+    return nodes
+
+
+def astar(start, goal):
+    start_node = AstarNode(None, start)
+    goal_node = AstarNode(None, goal)
     # start node - where unit placed
     # goal node - if unit on left or right side route them to left or right towers then to other tower
 
@@ -46,11 +59,11 @@ def astar(start, goal, get_neighbors):
                 # iterate through nodes and iterate their parents to get lowest F values in order and make a path
             return path[::-1]  # return the path in reverse order
 
-        neighbors = get_neighbors(current_node)
+        neighbors = get_neighbors(current_node, current_node.position[0], current_node.position[1])
         # generate neighbors
 
         for neighbor in neighbors:
-            if (neighbor.position in closed_set) or (get_tile_index(neighbor.position[0],neighbor.position[1]) == -1):
+            if (neighbor.position in closed_set) or (get_tile_index(neighbor.position[0], neighbor.position[1]) == -1):
                 continue
             # check to make sure we are not double-checking nodes
 

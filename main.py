@@ -15,20 +15,36 @@ current_player = playerclass.Player(0)  # making current player
 def getDictValue(troop):
     val = troop["cost"]
     return val
+
+
+def Nodemovement(point, time):
+    if int(time[len(time) - 1]) < point.payload.speed:
+        point.payload.x, point.payload.y = point.payload.movement
+        point.x = point.payload.x
+        point.y = point.payload.y
+        pygame.draw.rect(screen, point.payload.get_color(), (point.payload.get_x(), point.payload.get_y(), point.payload.get_width(), point.payload.get_height()))
+
+
+pygame.init()
+
+
 def iterate_quadtree(quadtree):
     print("hello")
     for point in quadtree.points:
         print(point.x)
         if not point.payload.get_ifDrawn():
-            print("X:")
+            print("RECT X:")
             print(point.payload.get_x())
-            print("Y:")
+            print("RECT Y:")
             print(point.payload.get_y())
             print("height:")
             print(point.payload.get_height())
             print("width:")
             print(point.payload.get_width())
-            pygame.draw.rect(screen, point.payload.get_color(), (point.payload.get_x(), point.payload.get_y(), point.payload.get_width(), point.payload.get_height()))
+            pygame.draw.rect(screen, point.payload.get_color(), (
+            point.payload.get_x(), point.payload.get_y(), point.payload.get_width(), point.payload.get_height()))
+        else:
+            Nodemovement(point, seconds)
 
     if quadtree.divided:
         iterate_quadtree(quadtree.nw)
@@ -36,8 +52,6 @@ def iterate_quadtree(quadtree):
         iterate_quadtree(quadtree.se)
         iterate_quadtree(quadtree.sw)
 
-
-pygame.init()
 
 # WINDOW DISPLAY
 screen_width = 540
@@ -89,6 +103,7 @@ def display_elixir_bar(screen, current_elixir):
 
 # Get the current time in milliseconds
 current_time = pygame.time.get_ticks()
+print(current_time)
 start_time = pygame.time.get_ticks()  # Record the starting time in milliseconds
 time_limit = 300000  # 5 minutes in milliseconds (5 * 60 * 1000)
 
@@ -105,7 +120,6 @@ last_time = current_time
 # Define the size of the timer background
 timer_bg_width = 100  # Adjust this as needed
 timer_bg_height = 50  # Adjust this as needed
-
 
 while run:
     for event in pygame.event.get():
@@ -175,10 +189,16 @@ while run:
 
     if lastKey is not None:
         index = current_player.cardSelector(lastKey)
+<<<<<<< Updated upstream
         #display selected card
         current_player.displaySelected(screen, index)
+=======
 
-        #placing logic
+        # updates card display!
+        current_player.displayCards(screen, index)
+>>>>>>> Stashed changes
+
+        # placing logic
         if index is not None and 0 <= index < len(current_player.playerHandArray):
             if pygame.mouse.get_pressed()[0] == 1 and place == False:
                 current_player.cardUsed(current_player.playerHandArray[index], index)
@@ -188,16 +208,15 @@ while run:
             if pygame.mouse.get_pressed()[0] == 0 and place == True:
                 place = False
 
-
     iterate_quadtree(QuadTreeFile.unitTree)
 
     # if (current_elixir >= hog_ride1r_unit.get_elixir()):
-        # place = True
-        # current_elixir -= hog_rider_unit.get_elixir()
+    # place = True
+    # current_elixir -= hog_rider_unit.get_elixir()
 
-        # toSpawn = hog_rider_unit.spawn_units(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
-        # for toDraw in toSpawn:
-        # 1pygame.draw.rect(screen, unit.get_color(), toDraw)##make fuc later
+    # toSpawn = hog_rider_unit.spawn_units(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
+    # for toDraw in toSpawn:
+    # 1pygame.draw.rect(screen, unit.get_color(), toDraw)##make fuc later
 
     # for i in range(len(toSpawn)):
     # color = toSpawn[i][0].get_color()  # Get the color

@@ -148,6 +148,17 @@ class QuadTree:
             npoints += len(self.nw) + len(self.ne) + len(self.se) + len(self.sw)
         return npoints
 
+    def reset(self,node):
+        i = 0
+        for i in range(len(self.points)):
+            if self.points[i] == node:
+                break
+        else:
+            print("Node not found")
+        self.points.pop(i)
+        self.insert(node)
+
+
     def __str__(self):
         sp = ' ' * self.depth * 2
         s = str(self.boundary) + '\n'
