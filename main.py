@@ -189,14 +189,8 @@ while run:
 
     if lastKey is not None:
         index = current_player.cardSelector(lastKey)
-<<<<<<< Updated upstream
         #display selected card
-        current_player.displaySelected(screen, index)
-=======
-
-        # updates card display!
-        current_player.displayCards(screen, index)
->>>>>>> Stashed changes
+        current_player.displaySelected(screen,index)
 
         # placing logic
         if index is not None and 0 <= index < len(current_player.playerHandArray):
@@ -210,20 +204,6 @@ while run:
 
     iterate_quadtree(QuadTreeFile.unitTree)
 
-    # if (current_elixir >= hog_ride1r_unit.get_elixir()):
-    # place = True
-    # current_elixir -= hog_rider_unit.get_elixir()
-
-    # toSpawn = hog_rider_unit.spawn_units(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
-    # for toDraw in toSpawn:
-    # 1pygame.draw.rect(screen, unit.get_color(), toDraw)##make fuc later
-
-    # for i in range(len(toSpawn)):
-    # color = toSpawn[i][0].get_color()  # Get the color
-    # rectangles = toSpawn[i][0].spawn_units(toSpawn[i][1], toSpawn[i][2])  # Get a list of rectangles
-
-    # for rect in rectangles:
-    # pygame.draw.rect(screen, color, rect)  # Draw each rectangle with the given color
     pygame.display.update()
     clock.tick(fps)
 

@@ -1,17 +1,14 @@
 import pygame
-import math
 from tile import *
-from pygame.locals import *
 import math
-from cards import *
 from gblvars import *
 
 class Spell:
     def __init__(self, spell, player):
-        self.m_name = spell["name"]
-        self.m_cost = spell["cost"]
-        self.m_dmg = spell["dmg"]
-        self.m_dmg_counter = spell["dmg_counter"]
+        self.name = spell["name"]
+        self.cost = spell["cost"]
+        self.dmg = spell["dmg"]
+        self.dmg_counter = spell["dmg_counter"]
         self.m_duration = spell["duration"]
         self.m_tower_dmg = spell["tower_dmg"]
         self.m_speed = spell["speed"]
@@ -31,10 +28,10 @@ class Spell:
         return self.m_colors
 
     def get_elixir(self):
-        return self.m_cost
+        return self.cost
     
     def get_name(self):
-        return self.m_name
+        return self.name
     
     def get_id(self):
         return self.id

@@ -9,24 +9,24 @@ from AstarAlgorithm import AstarNode, astar
 
 class Unit:
     def __init__(self, troop, player):
-        self.m_name = troop["name"]
-        self.m_cost = troop["cost"]
-        self.m_hp = troop["hp"]
-        self.m_dmg = troop["dmg"]
+        self.name = troop["name"]
+        self.cost = troop["cost"]
+        self.hp = troop["hp"]
+        self.dmg = troop["dmg"]
         # self.m_splash = troop["splash"]
-        self.m_hit_speed = troop["hit_speed"]
-        self.m_speed = troop["speed"]
-        self.m_deploy_time = troop["deploy_time"]
-        self.m_range = troop["range"]
-        self.m_target = troop["target"]
-        self.m_count = troop["count"]
-        self.m_transport = troop["transport"]
-        self.m_width = troop["width"]
-        self.m_height = troop["height"]
+        self.hit_speed = troop["hit_speed"]
+        self.speed = troop["speed"]
+        self.deploy_time = troop["deploy_time"]
+        self.range = troop["range"]
+        self.target = troop["target"]
+        self.count = troop["count"]
+        self.transport = troop["transport"]
+        self.width = troop["width"]
+        self.height = troop["height"]
         # self.m_ability = troop["ability"]
         # self.m_cc = troop["cc"]
-        self.m_units = None
-        self.m_colors = (troop["colors"])
+        self.units = None
+        self.colors = (troop["colors"])
         self.player = player
         self.id = UnitID.giveID()
         self.placed = False
@@ -38,85 +38,85 @@ class Unit:
         # self.unit_rect_stats = pygame.Rect(self.x,self.y,self.m_width,self.m_height)
 
     def get_name(self):
-        return self.m_name
+        return self.name
 
     def set_name(self, name):
-        self.m_name = name
+        self.name = name
 
     def get_cost(self):
-        return self.m_cost
+        return self.cost
 
     def set_cost(self, cost):
-        self.m_cost = cost
+        self.cost = cost
 
     def get_hp(self):
-        return self.m_hp
+        return self.hp
 
     def set_hp(self, hp):
-        self.m_hp = hp
+        self.hp = hp
 
     def get_dmg(self):
-        return self.m_dmg
+        return self.dmg
 
     def set_dmg(self, dmg):
-        self.m_dmg = dmg
+        self.dmg = dmg
 
     def get_hit_speed(self):
-        return self.m_hit_speed
+        return self.hit_speed
 
     def set_hit_speed(self, hit_speed):
-        self.m_hit_speed = hit_speed
+        self.hit_speed = hit_speed
 
     def get_speed(self):
-        return self.m_speed
+        return self.speed
 
     def set_speed(self, speed):
-        self.m_speed = speed
+        self.speed = speed
 
     def get_deploy_time(self):
-        return self.m_deploy_time
+        return self.deploy_time
 
     def set_deploy_time(self, deploy_time):
-        self.m_deploy_time = deploy_time
+        self.deploy_time = deploy_time
 
     def get_range(self):
-        return self.m_range
+        return self.range
 
     def set_range(self, range):
-        self.m_range = range
+        self.range = range
 
     def get_target(self):
-        return self.m_target
+        return self.target
 
     def set_target(self, target):
-        self.m_target = target
+        self.target = target
 
     def get_count(self):
-        return self.m_count
+        return self.count
 
     def set_count(self, count):
-        self.m_count = count
+        self.count = count
 
     def get_transport(self):
-        return self.m_transport
+        return self.transport
 
     def set_transport(self, transport):
-        self.m_transport = transport
+        self.transport = transport
 
     def get_width(self):
-        return self.m_width
+        return self.width
 
     def set_width(self, width):
-        self.m_width = width
+        self.width = width
 
     def get_height(self):
-        return self.m_height
+        return self.height
 
     def set_height(self, height):
-        self.m_height = height
+        self.height = height
 
     def get_color(self):
-        return self.m_colors
+        return self.colors
 
     def get_ifDrawn(self):
         return self.placed
@@ -137,19 +137,11 @@ class Unit:
         self.y = y
 
     def get_path(self):
-<<<<<<< Updated upstream
         ## commented out to test !!
         #if (self.x > )
         #    goal =
         #astar()
         print('output placeholder')
-=======
-        if self.x < 272:
-            goal = AstarNode(None, (136, 190))
-        else:
-            goal = AstarNode(None, (401, 188))
-        return astar(self.starting_node, goal)
->>>>>>> Stashed changes
 
     def get_tile_index(self, mouseX, mouseY):
         mouseX = mouseX - 54
@@ -160,8 +152,8 @@ class Unit:
         tile = tiles[mouseY][mouseX]  # flipped?
         if tile == 1:
             self.x = (mouseX * 24) + 54
-            self.y = (mouseY * 24) - (self.m_height / 2)
-            return [int(mouseX * 24), int((mouseY * 24) - (self.m_height / 2))]
+            self.y = (mouseY * 24) - (self.height / 2)
+            return [int(mouseX * 24), int((mouseY * 24) - (self.height / 2))]
         if tile == 0:
             print("invalid placement")
             return -1
@@ -172,17 +164,9 @@ class Unit:
     def spawn_units(self, mouseX, mouseY, i):
         pos = self.get_tile_index(mouseX, mouseY)
         if pos != -1:
-            self.m_units = (pygame.Rect(pos[0] + (1.05 * i), pos[1] + (1.05 * i), self.m_width, self.m_height))
-        return self.m_units
+            self.units = (pygame.Rect(pos[0] + (1.05 * i), pos[1] + (1.05 * i), self.width, self.height))
+        return self.units
 
     def movement(self):
-<<<<<<< Updated upstream
         print('output placeholder')
-
-
-
-
-
-=======
-        return self.path.pop(0)
->>>>>>> Stashed changes
+        #return self.path.pop(0)
