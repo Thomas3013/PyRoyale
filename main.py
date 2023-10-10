@@ -1,12 +1,7 @@
 import pygame
-from pygame.locals import *
 import playerclass
-from unitclass import Unit
 from cards import *
-from tile import *
-import math
 import QuadTreeFile
-from QuadTreeFile import *
 
 ##setting up player
 current_player = playerclass.Player(0)  # making current player

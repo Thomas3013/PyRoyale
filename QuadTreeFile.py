@@ -1,5 +1,4 @@
 import numpy as np
-from unitclass import Unit
 
 
 class Point:

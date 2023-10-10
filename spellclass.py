@@ -1,7 +1,6 @@
 import pygame
 from tile import *
 import math
-from gblvars import *
 
 class Spell:
     def __init__(self, spell, player):
@@ -9,23 +8,23 @@ class Spell:
         self.cost = spell["cost"]
         self.dmg = spell["dmg"]
         self.dmg_counter = spell["dmg_counter"]
-        self.m_duration = spell["duration"]
-        self.m_tower_dmg = spell["tower_dmg"]
-        self.m_speed = spell["speed"]
-        self.m_range = spell["range"]
-        self.m_target = spell["target"]
-        self.m_transport = spell["transport"]
-        self.m_width = spell["width"]
-        self.m_height = spell["height"]
-        self.m_units = []
-        self.m_kb = spell["kb"]
-        self.m_ability = spell["ability"]
-        self.m_colors = (spell["colors"])
+        self.duration = spell["duration"]
+        self.tower_dmg = spell["tower_dmg"]
+        self.speed = spell["speed"]
+        self.range = spell["range"]
+        self.target = spell["target"]
+        self.transport = spell["transport"]
+        self.width = spell["width"]
+        self.height = spell["height"]
+        self.units = []
+        self.kb = spell["kb"]
+        self.ability = spell["ability"]
+        self.colors = (spell["colors"])
         self.player = player
-        self.id = SpellID.giveID()
+        #self.id = SpellID.giveID()
 
     def get_color(self):
-        return self.m_colors
+        return self.colors
 
     def get_elixir(self):
         return self.cost
@@ -45,7 +44,7 @@ class Spell:
         tile = tiles[mouseY][mouseX]  # flipped?
         if tile == 1:
 
-            return [(mouseX * 24), (mouseY * 24) - (self.m_height / 2)]
+            return [(mouseX * 24), (mouseY * 24) - (self.height / 2)]
         else:
             print("invalid placement")
             return -1
@@ -54,5 +53,5 @@ class Spell:
         pos = self.get_tile_index(mouseX, mouseY)
         if (pos != -1):
             for x in range(self.m_count):
-                self.m_units.append(pygame.Rect(pos[0] + (1.05 * x), pos[1] + (1.05 * x), self.m_width, self.m_height))
-        return self.m_units
+                self.units.append(pygame.Rect(pos[0] + (1.05 * x), pos[1] + (1.05 * x), self.width, self.height))
+        return self.units

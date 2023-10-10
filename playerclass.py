@@ -18,14 +18,14 @@ cardCoords = [101, 209, 317, 425]
 class Player:
     def __init__(self,player):
         self.playerNum = player
-        self.__elixir = 0
-        self.__leftTower = 3200
-        self.__rightTower = 3200
-        self.__mainTower = 6000
-        self.__playerDeckArray = []
+        self.elixer = 0
+        self.leftTower = 3200
+        self.rightTower = 3200
+        self.mainTower = 6000
+        self.playerDeckArray = []
         self.setPlayerDeck()
         self.playerDeck = SingleLinkedList()
-        self.playerDeck.initializeDeck(self.__playerDeckArray)
+        self.playerDeck.initializeDeck(self.playerDeckArray)
         self.playerHandKeys = self.playerDeck.initializeHand()
         self.playerHandArray = self.getHand()
         self.pointer = self.playerDeck.next.next.next.next
@@ -33,22 +33,22 @@ class Player:
     # Getter for elixir
     @property
     def elixir(self):
-        return self.__elixir
+        return self.elixer
 
     # Setter for elixir
     @elixir.setter
     def elixir(self, value):
-        self.__elixir = value
+        self.elixer = value
 
     def setPlayerDeck(self):
-        self.__playerDeckArray.append("unit::pekka")
-        self.__playerDeckArray.append("unit::hog_rider")
-        self.__playerDeckArray.append("unit::princess")
-        self.__playerDeckArray.append("unit::bandit")
-        self.__playerDeckArray.append("unit::royal_ghost")
-        self.__playerDeckArray.append("unit::ice_spirit")
-        self.__playerDeckArray.append("unit::goblin_gang")
-        self.__playerDeckArray.append("unit::knight")
+        self.playerDeckArray.append("unit::pekka")
+        self.playerDeckArray.append("unit::hog_rider")
+        self.playerDeckArray.append("unit::princess")
+        self.playerDeckArray.append("unit::bandit")
+        self.playerDeckArray.append("unit::royal_ghost")
+        self.playerDeckArray.append("unit::ice_spirit")
+        self.playerDeckArray.append("unit::goblin_gang")
+        self.playerDeckArray.append("unit::knight")
 
         # for i in range(8):
         # self.__playerDeckArray.append(input("Enter a card name (e.g., unit::hog_rider):"))
