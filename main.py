@@ -175,6 +175,9 @@ while run:
     timer_rect = timer_surface.get_rect(topright=(screen_width - 10, 10))
     screen.blit(timer_surface, timer_rect)
 
+    print(pygame.mouse.get_pos()[0],"X")
+    print(pygame.mouse.get_pos()[1],"Y")
+
     #display cards
     current_player.displayCards(screen)
 

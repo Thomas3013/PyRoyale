@@ -145,16 +145,16 @@ class Unit:
 
     def get_tile_index(self, mouseX, mouseY):
         mouseX = mouseX - 54
-        mouseX = math.floor(mouseX / 24)
+        mouseX = math.floor(mouseX / 10)
         print(mouseX)
-        mouseY = math.floor(mouseY / 24)
+        mouseY = math.floor(mouseY / 10)
         print(mouseY)
         tile = tiles[mouseY][mouseX]  # flipped?
-        if tile == 1:
-            self.x = (mouseX * 24) + 54
-            self.y = (mouseY * 24) - (self.height / 2)
-            return [int(mouseX * 24), int((mouseY * 24) - (self.height / 2))]
         if tile == 0:
+            self.x = (mouseX * 10) + 56
+            self.y = (mouseY * 10) + 1
+            return [int(mouseX * 10), int((mouseY * 10) - (self.height / 2))]
+        if tile == 1:
             print("invalid placement")
             return -1
         if tile == 8:
