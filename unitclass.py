@@ -4,7 +4,6 @@ import math
 from gblvars import *
 import heapq
 import AstarAlgorithm
-from AstarAlgorithm import AstarNode, astar
 
 
 class Unit:
@@ -30,11 +29,14 @@ class Unit:
         self.player = player
         self.id = UnitID.giveID()
         self.placed = False
-        self.x = None
-        self.y = None
+        self.x = 206
+        self.y = 201
         self.get_tile_index(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
-        self.starting_node = AstarAlgorithm.AstarNode(None, (self.x, self.y))
-        self.path = self.get_path()
+        self.goal = self.goalFinder()
+        #self.goal = (AstarAlgorithm.AstarNode(106, 101, 0, 0))
+        self.home = AstarAlgorithm.AstarNode(self.x, self.y, self.goal.x, self.goal.y)
+        self.path = AstarAlgorithm.Astar(self.home, self.goal.x, self.goal.y)
+
         # self.unit_rect_stats = pygame.Rect(self.x,self.y,self.m_width,self.m_height)
 
     def get_name(self):
@@ -136,30 +138,31 @@ class Unit:
     def set_y(self, y):
         self.y = y
 
-    def get_path(self):
-        ## commented out to test !!
-        #if (self.x > )
-        #    goal =
-        #astar()
-        print('output placeholder')
-
     def get_tile_index(self, mouseX, mouseY):
         mouseX = mouseX - 54
         mouseX = math.floor(mouseX / 10)
-        print(mouseX)
+        # print(mouseX)
         mouseY = math.floor(mouseY / 10)
-        print(mouseY)
+        # print(mouseY)
         tile = tiles[mouseY][mouseX]  # flipped?
         if tile == 0:
             self.x = (mouseX * 10) + 56
             self.y = (mouseY * 10) + 1
-            return [int(mouseX * 10), int((mouseY * 10) - (self.height / 2))]
+            print(self.x, "self x")
+            print(self.y, "self y")
+            return [int(mouseX * 10), int((mouseY * 10))]
         if tile == 1:
-            print("invalid placement")
+            # print("invalid placement")
             return -1
         if tile == 8:
-            print("CASTLE")
+            # print("CASTLE")
             return -7
+
+    def goalFinder(self):
+        if self.x > 266:
+            return AstarAlgorithm.AstarNode(396, 171, 0, 0)
+        else:
+            return AstarAlgorithm.AstarNode(136, 171, 0, 0)
 
     def spawn_units(self, mouseX, mouseY, i):
         pos = self.get_tile_index(mouseX, mouseY)
@@ -168,5 +171,8 @@ class Unit:
         return self.units
 
     def movement(self):
-        print('output placeholder')
-        #return self.path.pop(0)
+        if len(self.path) > 0:
+            self.x, self.y = self.path.pop()
+
+        # print(self.x,"self.x")
+        # print(self.y,"self.y")

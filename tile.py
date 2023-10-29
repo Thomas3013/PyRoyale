@@ -7,7 +7,7 @@ cols = 46
 tiles = np.zeros((77, 43))  # Initialize the array with zeros
 
 tiles[35:41, :] = 1  # Set rows 35 to 40 to 1
-tiles[:, 7:12] = 0  # Set columns 7 to 11 to 0
+tiles[:, 8:11] = 0  # Set columns 7 to 11 to 0
 tiles[:, 33:38] = 0  # Set columns 33 to 37 to 0
 
 

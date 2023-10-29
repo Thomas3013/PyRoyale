@@ -2,6 +2,7 @@ import pygame
 import playerclass
 from cards import *
 import QuadTreeFile
+from walkable_xy_check import get_tile_index
 
 ##setting up player
 current_player = playerclass.Player(0)  # making current player
@@ -13,32 +14,36 @@ def getDictValue(troop):
 
 
 def Nodemovement(point, time):
-    if int(time[len(time) - 1]) < point.payload.speed:
-        point.payload.x, point.payload.y = point.payload.movement
-        point.x = point.payload.x
-        point.y = point.payload.y
-        pygame.draw.rect(screen, point.payload.get_color(), (point.payload.get_x(), point.payload.get_y(), point.payload.get_width(), point.payload.get_height()))
+    point.payload.movement()
+    print(point.x)
+    print(point.y)
+    print("-------")
+    point.x = point.payload.x
+    point.y = point.payload.y
+    pygame.draw.rect(screen, point.payload.get_color(), (point.payload.get_x(), point.payload.get_y(), point.payload.get_width(), point.payload.get_height()))
 
 
 pygame.init()
 
 
 def iterate_quadtree(quadtree):
-    print("hello")
+    #print("hello")
     for point in quadtree.points:
-        print(point.x)
+        #print(point.x)
         if not point.payload.get_ifDrawn():
-            print("RECT X:")
-            print(point.payload.get_x())
-            print("RECT Y:")
-            print(point.payload.get_y())
-            print("height:")
-            print(point.payload.get_height())
-            print("width:")
-            print(point.payload.get_width())
+            #print("RECT X:")
+            #print(point.payload.get_x())
+            #print("RECT Y:")
+            #print(point.payload.get_y())
+            #print("height:")
+            #print(point.payload.get_height())
+            #print("width:")
+            #print(point.payload.get_width())
+            point.payload.set_ifDrawn(True)
             pygame.draw.rect(screen, point.payload.get_color(), (
             point.payload.get_x(), point.payload.get_y(), point.payload.get_width(), point.payload.get_height()))
         else:
+            print("nothere")
             Nodemovement(point, seconds)
 
     if quadtree.divided:
@@ -98,7 +103,7 @@ def display_elixir_bar(screen, current_elixir):
 
 # Get the current time in milliseconds
 current_time = pygame.time.get_ticks()
-print(current_time)
+#(current_time)
 start_time = pygame.time.get_ticks()  # Record the starting time in milliseconds
 time_limit = 300000  # 5 minutes in milliseconds (5 * 60 * 1000)
 
@@ -175,8 +180,7 @@ while run:
     timer_rect = timer_surface.get_rect(topright=(screen_width - 10, 10))
     screen.blit(timer_surface, timer_rect)
 
-    print(pygame.mouse.get_pos()[0],"X")
-    print(pygame.mouse.get_pos()[1],"Y")
+    get_tile_index(pygame.mouse.get_pos()[0],pygame.mouse.get_pos()[1])
 
     #display cards
     current_player.displayCards(screen)
@@ -196,7 +200,7 @@ while run:
                 current_player.cardUsed(current_player.playerHandArray[index], index)
                 current_elixir -= getDictValue(unit[current_player.playerHandArray[index]])
                 place = True
-                print('card placed!')
+                #print('card placed!')
             if pygame.mouse.get_pressed()[0] == 0 and place == True:
                 place = False
 
