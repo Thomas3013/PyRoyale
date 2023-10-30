@@ -1,0 +1,12 @@
+1. Adding attacking
+	if time // attack speed is n
+		use quadtree to scan for unit in range n
+			if unit is found:
+				go unit by unit (are they in order? by range)
+					update unit u's self.hp by current unit's attack
+						if self.hp < 0:
+							delete rectangle
+			else:
+				move by one square
+2. add multiplayer
+	player puts enemy ip in other 	
