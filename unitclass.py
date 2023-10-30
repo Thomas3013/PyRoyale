@@ -7,7 +7,7 @@ import AstarAlgorithm
 
 
 class Unit:
-    def __init__(self, troop, player):
+    def __init__(self, troop, player,x = None, y = None, path = None):
         self.name = troop["name"]
         self.cost = troop["cost"]
         self.hp = troop["hp"]
@@ -27,15 +27,21 @@ class Unit:
         self.units = None
         self.colors = (troop["colors"])
         self.player = player
+        self.x = 0
+        self.y = 0
         self.id = UnitID.giveID()
         self.placed = False
-        self.x = 206
-        self.y = 201
-        self.get_tile_index(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
-        self.goal = self.goalFinder()
-        #self.goal = (AstarAlgorithm.AstarNode(106, 101, 0, 0))
-        self.home = AstarAlgorithm.AstarNode(self.x, self.y, self.goal.x, self.goal.y)
-        self.path = AstarAlgorithm.Astar(self.home, self.goal.x, self.goal.y)
+        if self.player != 1:
+            self.get_tile_index(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
+            self.goal = self.goalFinder()
+            # self.goal = (AstarAlgorithm.AstarNode(106, 101, 0, 0))
+            self.home = AstarAlgorithm.AstarNode(self.x, self.y, self.goal.x, self.goal.y)
+            self.path = AstarAlgorithm.Astar(self.home, self.goal.x, self.goal.y)
+        else:
+            self.x = x
+            self.y = y
+            self.path = path
+
 
         # self.unit_rect_stats = pygame.Rect(self.x,self.y,self.m_width,self.m_height)
 
