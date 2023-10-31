@@ -20,28 +20,29 @@ def Nodemovement(point, time):
     print("-------")
     point.x = point.payload.x
     point.y = point.payload.y
-    pygame.draw.rect(screen, point.payload.get_color(), (point.payload.get_x(), point.payload.get_y(), point.payload.get_width(), point.payload.get_height()))
+    pygame.draw.rect(screen, point.payload.get_color(), (
+        point.payload.get_x(), point.payload.get_y(), point.payload.get_width(), point.payload.get_height()))
 
 
 pygame.init()
 
 
 def iterate_quadtree(quadtree):
-    #print("hello")
+    # print("hello")
     for point in quadtree.points:
-        #print(point.x)
+        # print(point.x)
         if not point.payload.get_ifDrawn():
-            #print("RECT X:")
-            #print(point.payload.get_x())
-            #print("RECT Y:")
-            #print(point.payload.get_y())
-            #print("height:")
-            #print(point.payload.get_height())
-            #print("width:")
-            #print(point.payload.get_width())
+            # print("RECT X:")
+            # print(point.payload.get_x())
+            # print("RECT Y:")
+            # print(point.payload.get_y())
+            # print("height:")
+            # print(point.payload.get_height())
+            # print("width:")
+            # print(point.payload.get_width())
             point.payload.set_ifDrawn(True)
             pygame.draw.rect(screen, point.payload.get_color(), (
-            point.payload.get_x(), point.payload.get_y(), point.payload.get_width(), point.payload.get_height()))
+                point.payload.get_x(), point.payload.get_y(), point.payload.get_width(), point.payload.get_height()))
         else:
             print("nothere")
             Nodemovement(point, seconds)
@@ -103,7 +104,7 @@ def display_elixir_bar(screen, current_elixir):
 
 # Get the current time in milliseconds
 current_time = pygame.time.get_ticks()
-#(current_time)
+# (current_time)
 start_time = pygame.time.get_ticks()  # Record the starting time in milliseconds
 time_limit = 300000  # 5 minutes in milliseconds (5 * 60 * 1000)
 
@@ -180,9 +181,9 @@ while run:
     timer_rect = timer_surface.get_rect(topright=(screen_width - 10, 10))
     screen.blit(timer_surface, timer_rect)
 
-    get_tile_index(pygame.mouse.get_pos()[0],pygame.mouse.get_pos()[1])
+    get_tile_index(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
 
-    #display cards
+    # display cards
     current_player.displayCards(screen)
 
     keys = pygame.key.get_pressed()
@@ -191,8 +192,8 @@ while run:
 
     if lastKey is not None:
         index = current_player.cardSelector(lastKey)
-        #display selected card
-        current_player.displaySelected(screen,index)
+        # display selected card
+        current_player.displaySelected(screen, index)
 
         # placing logic
         if index is not None and 0 <= index < len(current_player.playerHandArray):
@@ -200,7 +201,7 @@ while run:
                 current_player.cardUsed(current_player.playerHandArray[index], index)
                 current_elixir -= getDictValue(unit[current_player.playerHandArray[index]])
                 place = True
-                #print('card placed!')
+                # print('card placed!')
             if pygame.mouse.get_pressed()[0] == 0 and place == True:
                 place = False
 

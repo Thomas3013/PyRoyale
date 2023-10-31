@@ -2,12 +2,13 @@ import pygame
 from tile import *
 import math
 from gblvars import *
-import heapq
 import AstarAlgorithm
+import json
 
 
 class Unit:
-    def __init__(self, troop, player,x = None, y = None, path = None):
+    def __init__(self, troop, player, x=None, y=None, path=None, client=None):
+        self.troop = troop
         self.name = troop["name"]
         self.cost = troop["cost"]
         self.hp = troop["hp"]
@@ -41,7 +42,13 @@ class Unit:
             self.x = x
             self.y = y
             self.path = path
+        if client is not None:
+            self.send_unit_json(client)
 
+    def send_unit_json(self, client):
+        dict_to_parse = {"troop": self.troop, "player": self.player, "x": self.x + 10, "y": self.y + 10,
+                         "path": self.path}
+        client.sendJson(dict_to_parse)
 
         # self.unit_rect_stats = pygame.Rect(self.x,self.y,self.m_width,self.m_height)
 
@@ -179,6 +186,3 @@ class Unit:
     def movement(self):
         if len(self.path) > 0:
             self.x, self.y = self.path.pop()
-
-        # print(self.x,"self.x")
-        # print(self.y,"self.y")
