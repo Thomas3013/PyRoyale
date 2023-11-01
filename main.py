@@ -3,9 +3,11 @@ import playerclass
 from cards import *
 import QuadTreeFile
 from walkable_xy_check import get_tile_index
+from server import Server
+import socket
+
 
 ##setting up player
-current_player = playerclass.Player(0)  # making current player
 
 
 def getDictValue(troop):
@@ -24,9 +26,6 @@ def Nodemovement(point, time):
         point.payload.get_x(), point.payload.get_y(), point.payload.get_width(), point.payload.get_height()))
 
 
-pygame.init()
-
-
 def iterate_quadtree(quadtree):
     # print("hello")
     for point in quadtree.points:
@@ -40,6 +39,7 @@ def iterate_quadtree(quadtree):
             # print(point.payload.get_height())
             # print("width:")
             # print(point.payload.get_width())
+
             point.payload.set_ifDrawn(True)
             pygame.draw.rect(screen, point.payload.get_color(), (
                 point.payload.get_x(), point.payload.get_y(), point.payload.get_width(), point.payload.get_height()))
@@ -53,6 +53,13 @@ def iterate_quadtree(quadtree):
         iterate_quadtree(quadtree.se)
         iterate_quadtree(quadtree.sw)
 
+
+host = Server((socket.gethostname(), 1234))
+client = Server((socket.gethostname(), 1234))
+
+current_player = playerclass.Player(0)  # making current player
+
+pygame.init()
 
 # WINDOW DISPLAY
 screen_width = 540
