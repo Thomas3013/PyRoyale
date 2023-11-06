@@ -3,7 +3,9 @@ import playerclass
 from cards import *
 import QuadTreeFile
 from walkable_xy_check import get_tile_index
+from unitclass import Unit
 from server import Server
+from client import Client
 import socket
 
 
@@ -26,7 +28,17 @@ def Nodemovement(point, time):
         point.payload.get_x(), point.payload.get_y(), point.payload.get_width(), point.payload.get_height()))
 
 
-def iterate_quadtree(quadtree):
+def importJson(server, unitTree):
+    #        unitTree.insert(QuadTreeFile.Point(Unit(unit[card], self.playerNum)))
+
+    newJson = server.start()
+    unitTree.insert((QuadTreeFile.Point(Unit(newJson))))
+    server.close()
+
+    server.close()
+
+
+def iterate_quadtree(client, quadtree):
     # print("hello")
     for point in quadtree.points:
         # print(point.x)
@@ -39,7 +51,7 @@ def iterate_quadtree(quadtree):
             # print(point.payload.get_height())
             # print("width:")
             # print(point.payload.get_width())
-
+            client.sendJson(point.payload)
             point.payload.set_ifDrawn(True)
             pygame.draw.rect(screen, point.payload.get_color(), (
                 point.payload.get_x(), point.payload.get_y(), point.payload.get_width(), point.payload.get_height()))
@@ -48,14 +60,14 @@ def iterate_quadtree(quadtree):
             Nodemovement(point, seconds)
 
     if quadtree.divided:
-        iterate_quadtree(quadtree.nw)
-        iterate_quadtree(quadtree.ne)
-        iterate_quadtree(quadtree.se)
-        iterate_quadtree(quadtree.sw)
+        iterate_quadtree(clientSocket, quadtree.nw)
+        iterate_quadtree(clientSocket, quadtree.ne)
+        iterate_quadtree(clientSocket, quadtree.se)
+        iterate_quadtree(clientSocket, quadtree.sw)
 
 
-host = Server((socket.gethostname(), 1234))
-client = Server((socket.gethostname(), 1234))
+hostSocket = Server("10.5.0.2", 1234)
+clientSocket = Client("10.5.0.2", 1234)
 
 current_player = playerclass.Player(0)  # making current player
 
@@ -188,6 +200,8 @@ while run:
     timer_rect = timer_surface.get_rect(topright=(screen_width - 10, 10))
     screen.blit(timer_surface, timer_rect)
 
+    importJson(hostSocket, QuadTreeFile.unitTree)
+
     get_tile_index(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
 
     # display cards
@@ -212,7 +226,7 @@ while run:
             if pygame.mouse.get_pressed()[0] == 0 and place == True:
                 place = False
 
-    iterate_quadtree(QuadTreeFile.unitTree)
+    iterate_quadtree(clientSocket, QuadTreeFile.unitTree)
 
     pygame.display.update()
     clock.tick(fps)
