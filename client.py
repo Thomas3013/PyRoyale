@@ -10,5 +10,6 @@ class Client:
         self.s.connect((self.hostIP, self.hostPort))
 
     def sendJson(self, data):
+        print("im in sendJSON!")
         json_data = json.dumps(data)
         self.s.send(json_data.encode('utf-8'))

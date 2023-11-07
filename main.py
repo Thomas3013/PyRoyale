@@ -30,11 +30,10 @@ def Nodemovement(point, time):
 
 def importJson(server, unitTree):
     #        unitTree.insert(QuadTreeFile.Point(Unit(unit[card], self.playerNum)))
-
+    print("hello")
     newJson = server.start()
-    unitTree.insert((QuadTreeFile.Point(Unit(newJson))))
-    server.close()
-
+    if newJson is not None:
+        unitTree.insert((QuadTreeFile.Point(Unit(newJson, 1))))
     server.close()
 
 
@@ -51,7 +50,7 @@ def iterate_quadtree(client, quadtree):
             # print(point.payload.get_height())
             # print("width:")
             # print(point.payload.get_width())
-            client.sendJson(point.payload)
+            point.payload.send_unit_json(client)
             point.payload.set_ifDrawn(True)
             pygame.draw.rect(screen, point.payload.get_color(), (
                 point.payload.get_x(), point.payload.get_y(), point.payload.get_width(), point.payload.get_height()))
@@ -66,8 +65,9 @@ def iterate_quadtree(client, quadtree):
         iterate_quadtree(clientSocket, quadtree.sw)
 
 
-hostSocket = Server("10.5.0.2", 1234)
-clientSocket = Client("10.5.0.2", 1234)
+hostSocket = Server("192.168.4.47", 1234)
+clientSocket = Client("192.168.4.47", 1234)
+
 
 current_player = playerclass.Player(0)  # making current player
 
@@ -200,7 +200,10 @@ while run:
     timer_rect = timer_surface.get_rect(topright=(screen_width - 10, 10))
     screen.blit(timer_surface, timer_rect)
 
-    importJson(hostSocket, QuadTreeFile.unitTree)
+    try:
+        importJson(hostSocket, QuadTreeFile.unitTree)
+    except Exception as e:
+        print("Error")
 
     get_tile_index(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
 
